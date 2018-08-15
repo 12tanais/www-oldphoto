@@ -17,12 +17,16 @@
     <?php get_template_part( 'footer-widget' ); ?>
 	<footer id="colophon" class="site-footer <?php echo wp_bootstrap_starter_bg_class(); ?>" role="contentinfo">
 		<div class="container pt-3 pb-3">
-            <div class="site-info">
-                &copy; <?php echo date('Y'); ?> <?php echo '<a href="'.home_url().'">'.get_bloginfo('name').'</a>'; ?>
-                <span class="sep"> | </span>
-                <a class="credits" href="https://afterimagedesigns.com/wp-bootstrap-starter/" target="_blank" title="Wordpress Technical Support" alt="Bootstrap Wordpress Theme"><?php echo esc_html__('Bootstrap Wordpress Theme','wp-bootstrap-starter'); ?></a>
-
-            </div><!-- close .site-info -->
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                        <?php wp_nav_menu(array('theme_location' => 'footer_menu', 'menu_class' => 'navbar')); ?>
+                </div>
+                <div class="col-lg-12 ">
+                    <div class="site-info text-center">
+                        &copy; <?php echo date('Y'); ?> <?php echo '<a href="'.home_url().'">'.get_bloginfo('name').'</a>'; ?>
+                    </div><!-- close .site-info -->
+                </div>
+            </div>
 		</div>
 	</footer><!-- #colophon -->
 <?php endif; ?>

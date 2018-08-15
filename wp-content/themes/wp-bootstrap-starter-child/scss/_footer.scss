@@ -1,0 +1,19 @@
+@import 'global';
+
+footer#colophon{
+  color: #fff !important;
+  background-color: $darkBrown !important;
+  .navbar{
+    li{
+      list-style-type: none;
+      a{
+        font: 400 0.8rem Lato,sans-serif;
+        text-transform: uppercase;
+        &:hover, &:focus {
+          color: $activeButton;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}

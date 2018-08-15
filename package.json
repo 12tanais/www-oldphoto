@@ -1,0 +1,27 @@
+{
+  "name": "oldphoto",
+  "version": "1.0.0",
+  "description": "atiquje page",
+  "main": "index.js",
+  "dependencies": {
+    "browser-sync": "^2.24.6",
+    "npm": "^6.3.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^4.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/12tanais/www-oldphoto.git"
+  },
+  "author": "tanais",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/12tanais/www-oldphoto/issues"
+  },
+  "homepage": "https://github.com/12tanais/www-oldphoto#readme"
+}

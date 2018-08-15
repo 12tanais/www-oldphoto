@@ -1,0 +1,41 @@
+@import 'global';
+
+header#masthead {
+  background-color: $darkBrown;
+  .active > .nav-link{
+    color: $activeButton !important;
+    font: 600 1.25rem Lato, sans-serif !important;
+  }
+  ul.navbar-nav {
+    li {
+      .current_page_item > a {
+        color: #fff;
+        font-weight: 400 !important;
+      }
+      a.nav-link {
+        color: #fff;
+        font: 400 1.2rem Lato, sans-serif;
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+        &:hover, &:focus {
+          color: $activeButton;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+  /*! Breadcrumb NavXT*/
+  img.logo {
+    height: auto;
+    width: 155px;
+  }
+}
+.home{
+  span{
+    color: black;
+  }
+}
+#content.site-content {
+  padding-bottom: 1.125rem ;
+  padding-top: 1.125rem ;
+}

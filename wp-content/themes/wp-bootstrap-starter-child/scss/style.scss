@@ -9,4 +9,24 @@ Tags: blog,custom-menu,featured-images,threaded-comments,translation-ready,right
 Version: 3.1.0.1534263377
 Updated: 2018-08-14 19:16:17
 
-*//*!---Lato font---*/@import url("https://fonts.googleapis.com/css?family=Lato");header#masthead{background-color:#2d2822;/*! Breadcrumb NavXT*/}header#masthead .active>.nav-link{color:#8b6c42 !important;font:600 1.25rem Lato, sans-serif !important}header#masthead ul.navbar-nav li .current_page_item>a{color:#fff;font-weight:400 !important}header#masthead ul.navbar-nav li a.nav-link{color:#fff;font:400 1.2rem Lato, sans-serif;letter-spacing:0.7px;text-transform:uppercase}header#masthead ul.navbar-nav li a.nav-link:hover,header#masthead ul.navbar-nav li a.nav-link:focus{color:#8b6c42;font-weight:400}header#masthead img.logo{height:auto;width:155px}.home span{color:black}#content.site-content{padding-bottom:1.125rem;padding-top:1.125rem}footer#colophon{color:#fff !important;background-color:#2d2822 !important}footer#colophon .navbar li{list-style-type:none}footer#colophon .navbar li a{font:400 0.8rem Lato,sans-serif;text-transform:uppercase}footer#colophon .navbar li a:hover,footer#colophon .navbar li a:focus{color:#8b6c42;font-weight:400}h1,h2,h3,h4,h5,h6,a,p{font-family:Lato, sans-serif}a{text-decoration:none !important}#background-color-page{min-width:940px;background:transparent;background-color:#7e7163;background-image:url(./images/background.jpg);background-repeat:repeat;background-position:top left}
+*/
+/*!---Lato font---*/
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import 'header';
+@import 'footer';
+@import 'global';
+
+h1,h2,h3,h4,h5,h6,a,p{
+  font-family: Lato, sans-serif;
+}
+a{
+  text-decoration: none !important;
+}
+#background-color-page {
+  min-width: 940px;
+  background: transparent;
+  background-color: rgb(126,113,99);
+  background-image: url(./images/background.jpg);
+  background-repeat: repeat;
+  background-position: top left;
+}
