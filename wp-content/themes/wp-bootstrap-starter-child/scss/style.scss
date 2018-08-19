@@ -16,17 +16,94 @@ Updated: 2018-08-14 19:16:17
 @import 'footer';
 @import 'global';
 
-h1,h2,h3,h4,h5,h6,a,p{
-  font-family: Lato, sans-serif;
+h1, h2, h3, h4, h5, h6, a, p {
+  font-family: Lato, sans-serif !important;
 }
-a{
+
+a {
   text-decoration: none !important;
 }
+
 #background-color-page {
   min-width: 940px;
   background: transparent;
-  background-color: rgb(126,113,99);
+  background-color: rgb(126, 113, 99);
   background-image: url(./images/background.jpg);
   background-repeat: repeat;
   background-position: top left;
 }
+
+.home {
+  section#pos-menu {
+    min-height: 630px;
+  }
+  section#new-posts {
+    min-height: 730px;
+    background-color: $gray;
+  }
+  img.rounded.img-page {
+    max-width: 200px;
+  }
+  img.curls {
+    height: 25px;
+    margin: 30px 0 0;
+  }
+  .page-title {
+    color: #fff;
+    font: 400 24px Lato, sans-serif;
+    text-transform: uppercase;
+    margin-top: 10px;
+    letter-spacing: 0.15em;
+  }
+  .line {
+    border-top: 1px solid $darkBrown;
+    border-bottom: 1px solid $darkBrown;
+    padding: 10px 0;
+    margin: 10px 0 21px;
+    p {
+      padding: 10px 0 0;
+      margin-bottom: 0;
+      font: 400 16px Lato, sans-serif;
+    }
+
+  }
+  .btn {
+    background: transparent;
+    background-color: $activeButton;
+    padding: 8px 25px 8px 25px;
+    border: 1px solid #6E5A37;
+    font: 400 13px Lato, sans-serif;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    @include transition(background-color, .5s, $ease: linear);
+    &:hover, &:focus {
+      background-color: $darkBrown;
+      @include transition(background-color, .5s, $ease: linear);
+    }
+  }
+  #new-posts{
+    .page-title{
+      color: $darkBrown;
+      font: 400 24px Lato, sans-serif;
+    }
+    .post-title a{
+      color: $darkBrown;
+      font: 400 18px Lato, sans-serif;
+      letter-spacing: 0.050em;
+      text-transform: uppercase;
+    }
+    .post-img{
+      background: $gray;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 240px;
+      width: 150px;
+    }
+    .img-box-wrapper{
+      margin: 20px 0;
+    }
+  }
+}
+

@@ -37,3 +37,12 @@ function custom_login_css()
     <?php
 }
 add_action('login_head', 'custom_login_css');
+
+function trim_title_chars($count, $after)
+{
+    $title = get_the_title();
+    if (mb_strlen($title) > $count) $title = mb_substr($title, 0, $count);
+    else $after = '';
+    echo $title . $after;
+}
+

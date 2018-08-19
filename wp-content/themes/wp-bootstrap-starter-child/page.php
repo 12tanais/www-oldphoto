@@ -14,24 +14,99 @@
 
 get_header(); ?>
 
-	<section id="primary" class="content-area col-sm-12 col-lg-12">
-		<main id="main" class="site-main" role="main">
-            <?php echo do_shortcode('[slick-slider autoplay="true" autoplay_interval="3000" fade="true" design="design-2"]'); ?>
-            <?php
-			while ( have_posts() ) : the_post();
+    <section id="pos-menu" class="col-sm-12 col-lg-12">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 text-center">
+                    <img src="<?php echo get_stylesheet_directory_uri() ?>/images/icons.png"
+                         alt="logo" class="curls">
+                    <a href="<?php echo get_page_link(16) ?>"><h4 class="page-title">Фотографии</h4></a>
+                    <div class="line">
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/images/page-img1.jpg"
+                             alt="logo" class="rounded img-page">
+                        <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit
 
-				get_template_part( 'template-parts/content', 'page' );
+                            Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                    </div>
+                    <a href="<?php echo get_page_link(16) ?>">
+                        <button type="button" class="btn">Узнать больше</button>
+                    </a>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <img src="<?php echo get_stylesheet_directory_uri() ?>/images/icons.png"
+                         alt="logo" class="curls">
+                    <a href="<?php echo get_page_link(19) ?>"><h4 class="page-title">Документы</h4></a>
+                    <div class="line">
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/images/page-img2.jpg"
+                             alt="logo" class="rounded img-page">
+                        <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit
 
-                // If comments are open or we have at least one comment, load up the comment template.
-                if ( comments_open() || get_comments_number() ) :
-                    comments_template();
-                endif;
+                            Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                    </div>
+                    <a href="<?php echo get_page_link(19) ?>">
+                        <button type="button" class="btn">Узнать больше</button>
+                    </a>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <img src="<?php echo get_stylesheet_directory_uri() ?>/images/icons.png"
+                         alt="logo" class="curls">
+                    <a href="<?php echo get_page_link(22) ?>"><h4 class="page-title">Награды и знаки</h4></a>
+                    <div class="line">
+                        <img src="<?php echo get_stylesheet_directory_uri() ?>/images/page-img3.jpg"
+                             alt="logo" class="rounded img-page">
+                        <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit
 
-			endwhile; // End of the loop.
-			?>
-
-		</main><!-- #main -->
-	</section><!-- #primary -->
+                            Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                    </div>
+                    <a href="<?php echo get_page_link(22) ?>">
+                        <button type="button" class="btn">Узнать больше</button>
+                    </a>
+                </div>
+            </div>
+    </section>
+    <section id="new-posts" class="col-sm-12 col-lg-12">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <img src="<?php echo get_stylesheet_directory_uri() ?>/images/icons.png"
+                         alt="logo" class="curls">
+                    <h4 class="page-title">Новые поступления</h4>
+                    <div class="line">
+                        <div class="row">
+                            <?php
+                            $the_query = new WP_Query(array(
+                                'category_name' => 'documents, photos, medals',
+                                'posts_per_page' => 6,
+                                'paged' => $paged));
+                            ?>
+                            <?php if ($the_query->have_posts()) : ?>
+                                <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
+                                    <div class="col-lg-4">
+                                        <a href="<?php the_permalink(); ?>">
+                                        <div class="img-box-wrapper d-flex align-items-center justify-content-center">
+                                            <div class="post-img rounded" style="background-image: url('<?php
+                                            $thumb_id = get_post_thumbnail_id();
+                                            $thumb_url = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
+                                            echo $thumb_url[0];
+                                            ?>');">
+                                            </div>
+                                        </div>
+                                        </a>
+                                    </div>
+                                <?php endwhile; ?>
+                                <?php wp_reset_postdata(); ?>
+                            <?php else : ?>
+                                <p><?php esc_html_e('Извините, посты не найдены.'); ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <?php
 get_footer();
