@@ -14,10 +14,10 @@
 
 get_header(); ?>
 
-    <section id="pos-menu" class="col-sm-12 col-lg-12">
+    <section id="pos-menu">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 text-center">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-center">
                     <img src="<?php echo get_stylesheet_directory_uri() ?>/images/icons.png"
                          alt="logo" class="curls">
                     <a href="<?php echo get_page_link(16) ?>"><h4 class="page-title">Фотографии</h4></a>
@@ -33,7 +33,7 @@ get_header(); ?>
                         <button type="button" class="btn">Узнать больше</button>
                     </a>
                 </div>
-                <div class="col-lg-4 text-center">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-center">
                     <img src="<?php echo get_stylesheet_directory_uri() ?>/images/icons.png"
                          alt="logo" class="curls">
                     <a href="<?php echo get_page_link(19) ?>"><h4 class="page-title">Документы</h4></a>
@@ -49,7 +49,7 @@ get_header(); ?>
                         <button type="button" class="btn">Узнать больше</button>
                     </a>
                 </div>
-                <div class="col-lg-4 text-center">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-center">
                     <img src="<?php echo get_stylesheet_directory_uri() ?>/images/icons.png"
                          alt="logo" class="curls">
                     <a href="<?php echo get_page_link(22) ?>"><h4 class="page-title">Награды и знаки</h4></a>
@@ -67,10 +67,10 @@ get_header(); ?>
                 </div>
             </div>
     </section>
-    <section id="new-posts" class="col-sm-12 col-lg-12">
+    <section id="new-posts">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
+                <div class="col-md-12 col-lg-12 text-center">
                     <img src="<?php echo get_stylesheet_directory_uri() ?>/images/icons.png"
                          alt="logo" class="curls">
                     <h4 class="page-title">Новые поступления</h4>
@@ -84,7 +84,7 @@ get_header(); ?>
                             ?>
                             <?php if ($the_query->have_posts()) : ?>
                                 <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-                                    <div class="col-lg-4">
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4">
                                         <a href="<?php the_permalink(); ?>">
                                         <div class="img-box-wrapper d-flex align-items-center justify-content-center">
                                             <div class="post-img rounded" style="background-image: url('<?php

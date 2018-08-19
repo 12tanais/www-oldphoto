@@ -25,7 +25,6 @@ a {
 }
 
 #background-color-page {
-  min-width: 940px;
   background: transparent;
   background-color: rgb(126, 113, 99);
   background-image: url(./images/background.jpg);
@@ -76,6 +75,7 @@ a {
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 0.15em;
+    margin-bottom: 35px;
     @include transition(background-color, .5s, $ease: linear);
     &:hover, &:focus {
       background-color: $darkBrown;

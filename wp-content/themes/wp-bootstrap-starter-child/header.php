@@ -70,12 +70,11 @@
             </div>
         </div>
         <?php elseif ($wp_query->get_queried_object_id() == 7):?>
-            <div class="container-fluid slider-wrapper">
-                <div class="row">
-                    <div class="col-lg-12">
+            <div class="slider-wrapper" style="width: 100%">
+
+
                         <?php echo do_shortcode('[slick-slider autoplay="true" autoplay_interval="4000" fade="true" design="design-3"]'); ?>
-                    </div>
-                </div>
+
             </div>
         <?php endif;?>
                 <?php endif; ?>

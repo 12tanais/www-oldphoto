@@ -2,7 +2,7 @@
 
 header#masthead {
   background-color: $darkBrown;
-  .active > .nav-link{
+  .active > .nav-link {
     color: $activeButton !important;
     font: 600 1.25rem Lato, sans-serif !important;
   }
@@ -27,23 +27,26 @@ header#masthead {
   /*! Breadcrumb NavXT*/
   img.logo {
     height: auto;
-    width: 130px;
+    width: 230px;
   }
 }
-.home{
+
+.home {
   #content.site-content {
     padding-top: 0;
     padding-bottom: 0;
   }
-  span{
+  span {
     color: black;
   }
 }
+
 #content.site-content {
-  padding-bottom: 1.125rem ;
-  padding-top: 1.125rem ;
+  padding-bottom: 1.125rem;
+  padding-top: 1.125rem;
 }
-div.container-fluid.slider-wrapper{
+
+div.slider-wrapper {
   padding: 0 !important;
   border-top: 1px solid seashell;
   //border-bottom: 1px solid seashell;
@@ -70,15 +73,25 @@ div.container-fluid.slider-wrapper{
   .slick-slider-short-content {
     margin-top: 20px;
   }
+  .slide-title {
+    color: $activeButton !important;
+    text-align: center !important;
+  }
   .bg-overlay {
     padding: 30px 50px 17px;
-    &:hover {
-      .slide-title {
-        //color: $photoGold !important;
-      }
-      .slider-readmore {
-        //border: 1px solid $photoGold !important;
-        //background: $photoGold !important;
+    .readmore{
+      @include flex(flex);
+      @include align-items(center);
+      @include justify-content(center);
+
+    }
+    .slider-readmore{
+      @include transition(all, .3s, $ease: linear);
+      letter-spacing: 0.1em;
+      &:hover {
+        @include transition(all, .3s, $ease: linear);
+        border: 1px solid $activeButton !important;
+        background: $activeButton !important;
       }
     }
   }
@@ -94,7 +107,6 @@ div.container-fluid.slider-wrapper{
     }
   }
 }
-
 
 @media (max-width: 424px) {
   .wpsisac-slick-slider-wrp {
