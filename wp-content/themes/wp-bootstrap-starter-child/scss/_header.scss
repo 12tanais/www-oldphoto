@@ -116,14 +116,14 @@ div.slider-wrapper {
       }
     }
     .slick-slider-short-content {
-      p strong {
-        display: none;
+      p>em {
+        display: none !important;
       }
     }
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   body .wpsisac-slick-slider-wrp {
     #slick-slide00 .wp-medium-7, #slick-slide01 .wp-medium-7 {
       width: 100%;
