@@ -18,48 +18,34 @@ get_header(); ?>
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-center">
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/images/icons.png"
-                         alt="logo" class="curls">
+
                     <a href="<?php echo get_page_link(16) ?>"><h4 class="page-title">Фотографии</h4></a>
                     <div class="line">
                         <img src="<?php echo get_stylesheet_directory_uri() ?>/images/page-img1.jpg"
                              alt="logo" class="rounded img-page">
-                        <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit
-
-                            Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                        <p>В данном разделе представлены около сотни фотоснимков, сделанных на территории Российской империи во второй половине XIX - началу XX века. </p>
                     </div>
                     <a href="<?php echo get_page_link(16) ?>">
                         <button type="button" class="btn">Узнать больше</button>
                     </a>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-center">
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/images/icons.png"
-                         alt="logo" class="curls">
                     <a href="<?php echo get_page_link(19) ?>"><h4 class="page-title">Документы</h4></a>
                     <div class="line">
                         <img src="<?php echo get_stylesheet_directory_uri() ?>/images/page-img2.jpg"
                              alt="logo" class="rounded img-page">
-                        <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit
-
-                            Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                        <p>Не большая коллекция исторических документов на нашем сайте охватывает эпоху от начала царствования Николая I до 1918 года.</p>
                     </div>
                     <a href="<?php echo get_page_link(19) ?>">
                         <button type="button" class="btn">Узнать больше</button>
                     </a>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-center">
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/images/icons.png"
-                         alt="logo" class="curls">
                     <a href="<?php echo get_page_link(22) ?>"><h4 class="page-title">Награды и знаки</h4></a>
                     <div class="line">
                         <img src="<?php echo get_stylesheet_directory_uri() ?>/images/page-img3.jpg"
                              alt="logo" class="rounded img-page">
-                        <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit
-
-                            Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                        <p>Царские награды и знаки представлены медалями, 'профессиональными', студенческими, ученическими знаками и жетонами. </p>
                     </div>
                     <a href="<?php echo get_page_link(22) ?>">
                         <button type="button" class="btn">Узнать больше</button>
@@ -71,20 +57,18 @@ get_header(); ?>
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-lg-12 text-center">
-                    <img src="<?php echo get_stylesheet_directory_uri() ?>/images/icons.png"
-                         alt="logo" class="curls">
                     <h4 class="page-title">Новые поступления</h4>
                     <div class="line">
                         <div class="row">
                             <?php
                             $the_query = new WP_Query(array(
                                 'category_name' => 'documents, photos, medals',
-                                'posts_per_page' => 6,
+                                'posts_per_page' => 8,
                                 'paged' => $paged));
                             ?>
                             <?php if ($the_query->have_posts()) : ?>
                                 <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-                                    <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                                    <div class="col-12 col-sm-6 col-md-3 col-lg-3">
                                         <a href="<?php the_permalink(); ?>">
                                         <div class="img-box-wrapper d-flex align-items-center justify-content-center">
                                             <div class="post-img rounded" style="background-image: url('<?php

@@ -1,9 +1,15 @@
 @import 'global';
 
 footer#colophon{
+  #menu-menu-2{
+    border-bottom: 1px solid #fff;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+  }
   color: #fff !important;
   background-color: $darkBrown !important;
   .navbar{
+    justify-content: space-around;
     li{
       list-style-type: none;
       a{

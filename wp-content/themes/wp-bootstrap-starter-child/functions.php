@@ -46,3 +46,13 @@ function trim_title_chars($count, $after)
     echo $title . $after;
 }
 
+//my file js
+function load(){
+    // my js file
+    wp_enqueue_script('view_script', get_template_directory_uri().'-child/js/js.js','', '1.0', true);
+}
+add_action('wp_enqueue_scripts', 'load');
+
+
+
+

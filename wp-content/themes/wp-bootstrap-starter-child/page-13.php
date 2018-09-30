@@ -9,9 +9,7 @@ get_header(); ?>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="page-title text-center">
-                        <img src="<?php echo get_stylesheet_directory_uri() ?>/images/icons.png"
-                             alt="logo" class="curls">
-                        <h1>Контакты</h1>
+                        <h1 class="text-left">Контакты</h1>
                     </div>
                 </div>
                 <div class="col-lg-6">
