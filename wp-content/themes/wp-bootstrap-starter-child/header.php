@@ -61,7 +61,7 @@
         <?php if($wp_query->get_queried_object_id() != 7):?>
         <div class="container">
             <div class="row">
-                <div class="col-ld-12">
+                <div class="col-ld-12  breadcrumbs">
                     <?php if(function_exists('bcn_display'))
                     {
                         bcn_display();

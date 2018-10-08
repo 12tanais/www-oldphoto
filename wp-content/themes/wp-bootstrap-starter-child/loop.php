@@ -15,12 +15,12 @@
                 <div class="fun-box-img">
                     <div class="fun-line">
                         <div class="title-box d-flex align-items-center justify-content-center">
-<!--                            <p>Дата публикации: --><?php //echo the_date() ?><!--</p>-->
-                            <h4>
-                                <a href="<?php the_permalink(); ?>">
-                                    <?php trim_title_chars(50, '...'); ?>
-                                </a>
-                            </h4>
+                            <!--                            <p>Дата публикации: --><?php //echo the_date() ?><!--</p>-->
+                            <a href="<?php the_permalink(); ?>">
+                                <h4>
+                                    <?php trim_title_chars(25, '...'); ?>
+                                </h4>
+                            </a>
                         </div>
                         <div class="img-wrapper">
                             <div class="fun-post-img" style="background-image: url('<?php
@@ -32,10 +32,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="fun-box-text d-flex flex-column justify-content-between align-items-center">
+                <div class="fun-box-text">
                     <div class="fun-text">
-                        <p><?php $main_content = get_the_content();
-                            $tri_content = wp_trim_words($main_content, 5, '...');
+                        <p>
+                            <?php $main_content =  the_field('description');
+                            $tri_content = wp_trim_words($main_content, 7, '...');
                             echo $tri_content; ?>
                         </p>
                     </div>
