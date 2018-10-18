@@ -1,35 +1,28 @@
 @import 'global';
 
-footer#colophon{
-  #menu-menu-2{
-    border-bottom: 1px solid #fff;
-    padding-bottom: 20px;
-    margin-bottom: 30px;
-  }
+footer#colophon {
+  background-color: transparent !important;
+  padding: 10px 0 0;
+  display: block;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 9999;
+  -webkit-transition: all .3s linear;
+  transition: all .3s linear;
   color: #fff !important;
-  background-color: $darkBrown !important;
-  .navbar{
-    justify-content: space-around;
-    li{
-      list-style-type: none;
-      a{
-        font: 400 0.8rem Lato,sans-serif;
-        text-transform: uppercase;
-        &:hover, &:focus {
-          color: $activeButton;
-          font-weight: 400;
-        }
-      }
+  .contact {
+    h6, a {
+      font: 400 30px/35px 'Pattaya',sans-serif !important;
+      text-shadow: -6px 1px 5px rgba(90, 86, 79, 0.6);
+      margin: 0;
+      color: #fff !important;
     }
-    @media (max-width: 400px){
-      @include flex-direction(column);
-      @include justify-content(center);
-      li {
-        a {
-          font: 500 14px Lato, sans-serif !important;
-          margin: 10px 0;
-        }
-      }
-    }
+  }
+  .copyright{
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    transform: translate(0, -50%);
   }
 }

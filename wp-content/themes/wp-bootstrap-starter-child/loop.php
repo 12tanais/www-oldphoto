@@ -10,7 +10,7 @@
     ?>
 
     <?php while ($new_query->have_posts()) : $new_query->the_post(); ?>
-        <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 d-flex flex-wrap">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex flex-wrap">
             <div class="post-box">
                 <div class="fun-box-img">
                     <div class="fun-line">

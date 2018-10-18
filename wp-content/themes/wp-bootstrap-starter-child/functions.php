@@ -56,3 +56,18 @@ add_action('wp_enqueue_scripts', 'load');
 
 
 
+function themeslug_theme_customizer( $wp_customize ) {
+
+    $wp_customize->add_setting( 'mytheme_logo' );
+
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'mytheme_logo', array(
+        'label'    => 'Logo',
+        'section'  => 'mytheme_logo_section',
+        'settings' => 'mytheme_logo',
+    ) ) );
+}
+add_action('customize_register', 'themeslug_theme_customizer');
+
+
+
+

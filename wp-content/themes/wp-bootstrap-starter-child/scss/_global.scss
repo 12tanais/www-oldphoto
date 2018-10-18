@@ -2,6 +2,8 @@ $darkBrown: #2d2822;
 $background: rgb(126, 113, 99);
 $gray: #e2ddd8;
 $activeButton: #8b6c42;
+@import url('https://fonts.googleapis.com/css?family=Pattaya');
+@import url('https://fonts.googleapis.com/css?family=Lato');
 
 @mixin flex($flex) {
   display: -webkit-box;

@@ -15,16 +15,19 @@
 	</div><!-- #content -->
     <?php get_template_part( 'footer-widget' ); ?>
 	<footer id="colophon" class="site-footer <?php echo wp_bootstrap_starter_bg_class(); ?>" role="contentinfo">
-		<div class="container pt-3 pb-3">
-            <div class="row justify-content-center">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                        <?php wp_nav_menu(array('theme_location' => 'footer_menu', 'menu_class' => 'navbar')); ?>
+		<div class="container-fluid pt-3 pb-3">
+            <div class="row">
+                <div class="col-0 col-sm-0 col-md-5 col-lg-5 col-xl-4">
+                    <div class="site-info text-center contact">
+                        <h6><a href="">Tel: +48531404819</a></h6><h6><a href="">Mail: otpusk.kiev@gmail.com</a></h6>
+                    </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
-                    <div class="site-info text-center">
-                        &copy; <?php echo date('Y'); ?> <?php echo '<a href="'.home_url().'">'.get_bloginfo('name').'</a>'; ?>
-                    </div><!-- close .site-info -->
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  d-flex flex-column align-items-center justify-content-end">
+                    <div class="site-info">
+                    &copy; <?php echo date('Y'); ?> <?php echo '<a href="'.home_url().'">'.get_bloginfo('name').'</a>'; ?>
+                    </div>
                 </div>
+
             </div>
 		</div>
 	</footer><!-- #colophon -->
