@@ -1,9 +1,10 @@
-$darkBrown: #2d2822;
+$gray-dark: #343a40;
 $background: rgb(126, 113, 99);
-$gray: #e2ddd8;
+$gray: #898989;
 $activeButton: #8b6c42;
 @import url('https://fonts.googleapis.com/css?family=Pattaya');
 @import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
 
 @mixin flex($flex) {
   display: -webkit-box;
@@ -36,10 +37,26 @@ $activeButton: #8b6c42;
   flex-wrap: $wrap;
 }
 
-@mixin border-radius($radius) {
+@mixin border-radius($radius ) {
   border-radius: $radius;
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
+}
+
+
+@mixin border-pos-rad($topleft, $topright, $bottomright, $bottomleft) {
+  border-top-left-radius: $topleft;
+  border-top-right-radius: $topright;
+  border-bottom-right-radius: $bottomright;
+  border-bottom-left-radius: $bottomleft;
+  -webkit-border-top-left-radius: $topleft;
+  -webkit-border-top-right-radius: $topright;
+  -webkit-border-bottom-right-radius: $bottomright;
+  -webkit-border-bottom-left-radius: $bottomleft;
+  -moz-border-radius-topleft: $topleft;
+  -moz-border-radius-topright: $topright;
+  -moz-border-radius-bottomright: $bottomright;
+  -moz-border-radius-bottomleft: $bottomleft;
 }
 
 @mixin background-size($background-size) {

@@ -30,12 +30,13 @@
         <div class="container-fluid" style="position: relative">
             <div class="nav-cover"></div>
             <nav class="navbar navbar-expand-xl p-0">
-                <div class="col-md-12 col-lg-12 col-xl-12 navMenu">
-                    <div class="navbar-brand">
-                        <a href="<?php echo get_page_link(7) ?>">
-                            <h1 class="logo">OldPhoto</h1>
-                        </a>
-                    </div>
+                <div class="navbar-brand">
+                    <a href="<?php echo get_page_link(7) ?>">
+                        <h1 class="logo">OldPhoto</h1>
+                    </a>
+                </div>
+
+
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
                             aria-controls="" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -46,7 +47,7 @@
                         'theme_location' => 'primary',
                         'container' => 'div',
                         'container_id' => 'main-nav',
-                        'container_class' => 'collapse navbar-collapse d-flex justify-content-around',
+                        'container_class' => 'collapse navbar-collapse  justify-content-around',
                         'menu_id' => false,
                         'menu_class' => 'navbar-nav',
                         'depth' => 3,
@@ -54,11 +55,23 @@
                         'walker' => new wp_bootstrap_navwalker()
                     ));
                     ?>
-                </div>
+
             </nav>
         </div>
 
     </header><!-- #masthead -->
     <div id="content" class="site-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumbs" typeof="BreadcrumbList" vocab="https://schema.org/">
+                        <?php if(function_exists('bcn_display'))
+                        {
+                            bcn_display();
+                        }?>
+                    </div></div>
+            </div>
+        </div>
         <?php endif; ?>
+
 

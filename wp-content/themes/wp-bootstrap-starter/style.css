@@ -285,19 +285,19 @@ table {
 # Navigation
 --------------------------------------------------------------*/
 header#masthead {
-  margin-bottom: 0;
-  background-color: #563d7c ;
-  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
-  padding: .74rem 1rem;
+  /*margin-bottom: 0;*/
+  /*background-color: #563d7c ;*/
+  /*box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);*/
+  /*padding: .74rem 1rem;*/
 }
 
 .navbar-brand > a {
-  color: rgba(0, 0, 0, 0.9);
-  font-size: 1.1rem;
-  outline: medium none;
-  text-decoration: none;
-  color: #fff;
-  font-weight: 700;
+  /*color: rgba(0, 0, 0, 0.9);*/
+  /*font-size: 1.1rem;*/
+  /*outline: medium none;*/
+  /*text-decoration: none;*/
+  /*color: #fff;*/
+  /*font-weight: 700;*/
 }
 
 .navbar-brand > a:visited, .navbar-brand > a:hover {
@@ -305,21 +305,21 @@ header#masthead {
 }
 
 #page-sub-header {
-  position: relative;
-  padding-top: 5rem;
-  padding-bottom: 0;
-  text-align: center;
-  font-size: 1.25rem;
-  background-size: cover !important;
+  /*position: relative;*/
+  /*padding-top: 5rem;*/
+  /*padding-bottom: 0;*/
+  /*text-align: center;*/
+  /*font-size: 1.25rem;*/
+  /*background-size: cover !important;*/
 }
 
 body:not(.theme-preset-active) #page-sub-header h1 {
-  line-height: 1.6;
-  font-size: 4rem;
-  color: #563e7c;
-  margin: 0 0 1rem;
-  border: 0;
-  padding: 0;
+  /*line-height: 1.6;*/
+  /*font-size: 4rem;*/
+  /*color: #563e7c;*/
+  /*margin: 0 0 1rem;*/
+  /*border: 0;*/
+  /*padding: 0;*/
 }
 
 #page-sub-header p {

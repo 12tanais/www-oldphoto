@@ -36,10 +36,6 @@ class TRP_Translation_Render{
             return;
         }
 
-
-        /*if($_SERVER['REQUEST_URI'] == '/it/wp-json/wp/v2/posts/')
-            return;*/
-
         mb_http_output("UTF-8");
         ob_start(array($this, 'translate_page'));
     }
@@ -252,7 +248,7 @@ class TRP_Translation_Render{
     	if ( in_array( $row->tag, $merge_rules['top_parents'] ) ){
 		    $trimmed_inner_text = $this->trim_translation_block( $row->innertext );
 			foreach( $all_existing_translation_blocks as $existing_translation_block ){
-				if ( $this->trim_translation_block( $existing_translation_block->original ) == $trimmed_inner_text ){
+				if ( $existing_translation_block->trimmed_original == $trimmed_inner_text ){
 					return $existing_translation_block;
 				}
 			}
@@ -281,6 +277,11 @@ class TRP_Translation_Render{
      * @return string               Translated HTML page.
      */
     public function translate_page( $output ){
+
+        /* replace our special tags so we have valid html */
+        $output = str_replace('#!trpst#', '<', $output);
+        $output = str_replace('#!trpen#', '>', $output);
+
         $output = apply_filters('trp_before_translate_content', $output);
 
         if ( strlen( $output ) < 1 || $output == false ){
@@ -370,6 +371,10 @@ class TRP_Translation_Render{
 		    $this->translation_manager = $trp->get_component( 'translation_manager' );
 	    }
         $all_existing_translation_blocks = $this->trp_query->get_all_translation_blocks( $language_code );
+	    // trim every translation block original now, to avoid over-calling trim function later
+	    foreach ( $all_existing_translation_blocks as $key => $existing_tb ){
+		    $all_existing_translation_blocks[$key]->trimmed_original = $this->trim_translation_block( $all_existing_translation_blocks[$key]->original );
+	    }
 		$merge_rules = $this->translation_manager->get_merge_rules();
 
         $html = trp_str_get_html($output, true, true, TRP_DEFAULT_TARGET_CHARSET, false, TRP_DEFAULT_BR_TEXT, TRP_DEFAULT_SPAN_TEXT);
@@ -524,6 +529,9 @@ class TRP_Translation_Render{
                     array_push( $translateable_strings, $this->full_trim( $row->outertext ) );
                     if( $row->parent()->tag == 'button') {
                         array_push($nodes, array('node' => $row, 'type' => 'button'));
+                    }
+                    if( $row->parent()->tag == 'option') {
+                        array_push($nodes, array('node' => $row, 'type' => 'option'));
                     }else{
                         array_push($nodes, array('node' => $row, 'type' => 'text'));
                     }
@@ -602,6 +610,10 @@ class TRP_Translation_Render{
             'button' => array(
                 'accessor' => 'outertext',
                 'attribute' => false
+            ),
+            'option' => array(
+                'accessor' => 'innertext',
+                'attribute' => false
             )
         ));
 
@@ -640,7 +652,7 @@ class TRP_Translation_Render{
                     $outertext_details .= '>' . $nodes[$i]['node']->outertext . '</translate-press>';
                     $nodes[$i]['node']->outertext = $outertext_details;
                 } else {
-                    if( $nodes[$i]['type'] == 'button' ){
+                    if( $nodes[$i]['type'] == 'button' || $nodes[$i]['type'] == 'option' ){
                         $nodes[$i]['node'] = $nodes[$i]['node']->parent();
                     }
                     $nodes[$i]['node']->setAttribute('data-trp-translate-id', $translated_string_ids[ $translateable_strings[$i] ]->id );
@@ -675,7 +687,7 @@ class TRP_Translation_Render{
 				$a_href->setAttribute( 'data-trp-original-href', $url );
 	        }
 
-            if ( $this->settings['force-language-to-custom-links'] == 'yes' && !$is_external_link && $this->url_converter->get_lang_from_url_string( $url ) == null && !$is_admin_link && strpos($url, '#TRPLINKPROCESSED') === false ){
+            if ( $TRP_LANGUAGE != $this->settings['default-language'] && $this->settings['force-language-to-custom-links'] == 'yes' && !$is_external_link && $this->url_converter->get_lang_from_url_string( $url ) == null && !$is_admin_link && strpos($url, '#TRPLINKPROCESSED') === false ){
                 $a_href->href = apply_filters( 'trp_force_custom_links', $this->url_converter->get_url_for_language( $TRP_LANGUAGE, $url ), $url, $TRP_LANGUAGE, $a_href );
                 $url = $a_href->href;
             }
@@ -846,6 +858,9 @@ class TRP_Translation_Render{
 
         // get existing translations
         $dictionary = $this->trp_query->get_existing_translations( array_values($translateable_strings), $language_code );
+        if ( $dictionary === false ){
+        	return array();
+        }
         $new_strings = array();
         foreach( $translateable_strings as $i => $string ){
             //strings existing in database,

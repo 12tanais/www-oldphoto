@@ -68,6 +68,12 @@ function themeslug_theme_customizer( $wp_customize ) {
 }
 add_action('customize_register', 'themeslug_theme_customizer');
 
+if (!is_admin()) {
+    wp_deregister_script('jquery');
+    wp_register_script('jquery', ("https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"), false, '1.12.4');
+wp_enqueue_script('jquery');
+}
+
 
 
 

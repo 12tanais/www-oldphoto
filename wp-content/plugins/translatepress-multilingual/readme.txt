@@ -4,7 +4,7 @@ Donate link: https://www.cozmoslabs.com/
 Tags: translate, translation, multilingual, automatic translation, bilingual, front-end translation, google translate, language
 Requires at least: 3.1.0
 Tested up to: 4.9.8
-Stable tag: 1.3.1
+Stable tag: 1.3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,6 +13,8 @@ Easily translate your entire site directly from the front-end and go multilingua
 == Description ==
 
 **Experience a better way to translate your WordPress site and go multilingual, directly from the front-end using a friendly user interface.**
+
+TranslatePress is a WordPress translation plugin that anyone can use.
 
 The interface allows you to easily translate the entire page at once, including output from shortcodes, forms and page builders. It also works out of the box with WooCommerce.
 
@@ -36,7 +38,7 @@ https://www.youtube.com/watch?v=pUlYisvBm8g
 * Possibility to edit gettext strings from themes and plugins from english to english, without adding another language. Basically a string-replace functionality.
 * Translation Block feature in which you can translate multiple html elements together
 
-Note: this plugin uses the Google Translation API to translate the strings on your site. This feature can be enabled or disabled according to your preferences.
+Note: this WordPress translation plugin uses the Google Translation API to translate the strings on your site. This feature can be enabled or disabled according to your preferences.
 
 Users with administrator rights have access to the following translate settings:
 
@@ -48,7 +50,7 @@ Users with administrator rights have access to the following translate settings:
 
 = Powerful Translation Add-ons =
 
-TranslatePress - Multilingual has a range of premium [Add-ons](https://translatepress.com/?utm_source=wp.org&utm_medium=tp-description-page&utm_campaign=TPFree) that allow you to extend the power of the translation plugin:
+TranslatePress - Multilingual has a range of premium [Add-ons](https://translatepress.com/?utm_source=wp.org&utm_medium=tp-description-page&utm_campaign=TPFree) that allow you to extend the power of the WordPress translation plugin:
 
 **Pro Add-ons** (available in the [premium versions](https://translatepress.com/pricing/?utm_source=wp.org&utm_medium=tp-description-page&utm_campaign=TPFree) only)
 
@@ -69,7 +71,7 @@ TranslatePress - Multilingual has a range of premium [Add-ons](https://translate
 
 = Documentation =
 
-[Visit our documentation page](https://translatepress.com/docs/translatepress/?utm_source=wp.org&utm_medium=tp-description-page&utm_campaign=TPFree)
+[Visit TranslatePress WordPress Translation plugin documentation page](https://translatepress.com/docs/translatepress/?utm_source=wp.org&utm_medium=tp-description-page&utm_campaign=TPFree)
 
 = Add-ons =
 
@@ -77,7 +79,7 @@ TranslatePress - Multilingual has a range of premium [Add-ons](https://translate
 
 = Demo Site =
 
-You can test out TranslatePress - Multilingual by [visiting our demo site](https://demo.translatepress.com/)
+You can test out TranslatePress - Multilingual plugin by [visiting our demo site](https://demo.translatepress.com/)
 
 == Installation ==
 
@@ -94,19 +96,23 @@ All the translation are stored locally in your server's database.
 
 = What types of content can I translate? =
 
-TranslatePress - Multilingual works out of the box with WooCommerce, custom post types, complex themes and site builders, so you'll be able to translate any type of content.
+TranslatePress - Multilingual plugin works out of the box with WooCommerce, custom post types, complex themes and site builders, so you'll be able to translate any type of content.
 
 = How is it different from other multilingual & translation plugins like WPML or Polylang? =
 
 TranslatePress is easier to use and more intuitive altogether. No more switching between the editor, string translation interfaces or badly translated plugins. You can now translate the full page content directly from the front-end. This makes TranslatePress a great alternative to plugins like Polylang and WPML.
 
-= How do I start to translate my site? =
+= How do I start to translate my WordPress site? =
 
 After installing the plugin, select your secondary language and click "Translate Site" to start translating your entire site exactly as it looks in the front-end.
 
+= Will it slow down my website? =
+
+TranslatePress will have little impact on your site speed. For more details see [Top WordPress Translation Plugins Compared Based on Page Load Time](https://translatepress.com/top-wordpress-translation-plugins-compared-based-on-page-load-time/?utm_source=wp.org&utm_medium=tp-description-page&utm_campaign=TPFree)
+
 = Where can I find out more information? =
 
-For more information please check out [TranslatePress documentation](https://translatepress.com/docs/translatepress/?utm_source=wp.org&utm_medium=tp-description-page&utm_campaign=TPFree).
+For more information please check out [TranslatePress - Multilingual plugin documentation](https://translatepress.com/docs/translatepress/?utm_source=wp.org&utm_medium=tp-description-page&utm_campaign=TPFree).
 
 
 == Screenshots ==
@@ -118,6 +124,28 @@ For more information please check out [TranslatePress documentation](https://tra
 6. Menu Language Switcher
 
 == Changelog ==
+= 1.3.4 =
+* Fixed issue with options in select tag that couldn't be translated
+* Fixed force language in custom links
+* Fixed Woocommerce links fpr products or categories that were added by the user manually in a page
+* Added Settings link to the list of links displayed on Plugins page
+* Fixed issue with Kazakhstan flag
+
+= 1.3.3 =
+* Fixed issue with Woocommerce ajax strings that were broken in editor on default language in some cases
+* Speed improvements
+
+= 1.3.2 =
+* Speed improvements
+* Add support for the Ginger – EU Cookie Law plugin
+* Add support for data-no-dynamic-translation attribute that skips dynamic strings from being translated by dom changes detector
+* Fixed Edit Pencil icon css in Translation Editor for some sites
+* Refactored the way we add trp-gettext tag. This should have a lot of benefits in compatibility with other plugins
+* Optimized block translation detection
+* Added caching to trp_x function when reading external .mo files
+* Fixed issue with translatepress icon css that was broken on wpforms forms
+* Added secret page for removing duplicate rows from database: wp-admin/admin.php?page=trp_remove_duplicate_rows
+
 = 1.3.1 =
 * Fixed Woocommerce translation of permalinks
 * Added support for remove_accents to be based on default language when called from the sanitize_title function

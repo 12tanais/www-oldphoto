@@ -38,8 +38,9 @@ class TRP_Translate_Press{
     public function __construct() {
         define( 'TRP_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
         define( 'TRP_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+        define( 'TRP_PLUGIN_BASE', plugin_basename( __DIR__ . '/index.php' ) );
         define( 'TRP_PLUGIN_SLUG', 'translatepress-multilingual' );
-        define( 'TRP_PLUGIN_VERSION', '1.3.1' );
+        define( 'TRP_PLUGIN_VERSION', '1.3.4' );
 
         $this->load_dependencies();
         $this->initialize_components();
@@ -102,6 +103,7 @@ class TRP_Translate_Press{
         $this->loader->add_action( 'admin_init', $this->settings, 'register_setting' );
         $this->loader->add_action( 'admin_notices', $this->settings, 'admin_notices' );
         $this->loader->add_action( 'admin_enqueue_scripts', $this->settings, 'enqueue_scripts_and_styles', 10, 1 );
+        $this->loader->add_filter( 'plugin_action_links_' . TRP_PLUGIN_BASE , $this->settings, 'plugin_action_links', 10, 1 );
         $this->loader->add_action( 'trp_settings_navigation_tabs', $this->settings, 'add_navigation_tabs' );
         $this->loader->add_action( 'trp_language_selector', $this->settings, 'languages_selector', 10, 1 );
 
@@ -129,7 +131,7 @@ class TRP_Translate_Press{
      * Hooks methods used in front-end
      */
     protected function define_frontend_hooks(){
-        $this->loader->add_action( 'init', $this->translation_render, 'start_output_buffer', -1 );
+        $this->loader->add_action( 'init', $this->translation_render, 'start_output_buffer', 0 );
         $this->loader->add_action( 'admin_init', $this->translation_render, 'start_output_buffer' );
         $this->loader->add_action( 'wp_enqueue_scripts', $this->translation_render, 'enqueue_dynamic_translation', 1 );
         $this->loader->add_filter( 'wp_redirect', $this->translation_render, 'force_preview_on_url_redirect', 99, 2 );
@@ -181,13 +183,6 @@ class TRP_Translate_Press{
         $this->loader->add_action( 'admin_init', $this->translation_manager, 'apply_gettext_filter' );
         $this->loader->add_action( 'shutdown', $this->translation_manager, 'machine_translate_gettext', 100 );
 
-        /* we need the esc_ functions for html and attributes not to escape our tags so we put them back */
-        $this->loader->add_filter( 'esc_html', $this->translation_manager, 'handle_esc_functions_for_gettext', 10, 2 );
-        $this->loader->add_filter( 'attribute_escape', $this->translation_manager, 'handle_esc_functions_for_gettext', 10, 2 );
-        /* we need to allow the trp-gettext tag in kses functions */
-        $this->loader->add_filter( 'wp_kses_allowed_html', $this->translation_manager, 'handle_kses_functions_for_gettext', 10 );
-        /* handle trp-gettext tag from attributes of other tags in kses functions*/
-        $this->loader->add_filter( 'pre_kses', $this->translation_manager, 'escape_gettext_from_attributes_kses', 5, 3 );
 
         /* we need to treat the date_i18n function differently so we remove the gettext wraps */
         $this->loader->add_filter( 'date_i18n', $this->translation_manager, 'handle_date_i18n_function_for_gettext', 1, 4 );

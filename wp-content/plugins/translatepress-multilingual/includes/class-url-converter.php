@@ -156,16 +156,24 @@ class TRP_Url_Converter {
             $language = $TRP_LANGUAGE;
         }
 
+        /* @ TO-DO
+         * need our own url_to_postid()This is due to the fact that we're using get_permalink that's filtered to get the correct url based on language with SEO Addon.
+         * url_to_postid() can be slow because it's doing a query for each bloody url.
+         * this is not a problem with pages that have fewer links, however, it is a problem
+         * with pages that list a ton of links
+         */
         $post_id = url_to_postid( $url );
+
         if( empty( $url ) ) {
             $url = $this->cur_page_url();
             $post_id = ( url_to_postid( $url ) ) ? ( url_to_postid( $url ) ) : ( $trp_backup_post_id );
         }
-	    if ( $post_id == 0 ) {
-		    $TRP_LANGUAGE = $this->settings['default-language'];
-		    $post_id      = url_to_postid( $url );
-		    $TRP_LANGUAGE = $trp_language_copy;
-	    }
+
+        if ( $post_id == 0 ) {
+            $TRP_LANGUAGE = $this->settings['default-language'];
+            $post_id      = url_to_postid( $url );
+            $TRP_LANGUAGE = $trp_language_copy;
+        }
 
         if( $post_id ){
             /*
@@ -210,19 +218,17 @@ class TRP_Url_Converter {
 
         /* fix links for woocommerce on language switcher for product categories and product tags */
         if( class_exists( 'WooCommerce' ) ){
-            if ( is_product_category() ) {
-                $current_cat_slug = trp_x( 'product-category', 'slug', 'woocommerce', $TRP_LANGUAGE );
-                $translated_cat_slug = trp_x( 'product-category', 'slug', 'woocommerce', $language );
-                $new_url = str_replace( '/'.$current_cat_slug.'/', '/'.$translated_cat_slug.'/', $new_url );
-            }elseif( is_product_tag() ){
-                $current_tag_slug = trp_x( 'product-tag', 'slug', 'woocommerce', $TRP_LANGUAGE );
-                $translated_tag_slug = trp_x( 'product-tag', 'slug', 'woocommerce', $language );
-                $new_url = str_replace( '/'.$current_tag_slug.'/', '/'.$translated_tag_slug.'/', $new_url );
-            }
-            elseif( is_product() ){
-                $current_product_slug = trp_x( 'product', 'slug', 'woocommerce', $TRP_LANGUAGE );
-                $translated_product_slug = trp_x( 'product', 'slug', 'woocommerce', $language );
-                $new_url = str_replace( '/'.$current_product_slug.'/', '/'.$translated_product_slug.'/', $new_url );
+            $default_woocommerce_slugs = array('product-category', 'product-tag', 'product');
+            foreach ($default_woocommerce_slugs as $default_woocommerce_slug){
+                // if $language is provided, like on the language switcher
+                $current_slug = trp_x( $default_woocommerce_slug, 'slug', 'woocommerce', $TRP_LANGUAGE );
+                $translated_slug = trp_x( $default_woocommerce_slug, 'slug', 'woocommerce', $language );
+                $new_url = str_replace( '/'.$current_slug.'/', '/'.$translated_slug.'/', $new_url );
+
+                // if $language is initially empty, like the link was found in the menu, manually added
+                $current_slug = $default_woocommerce_slug;
+                $translated_slug = trp_x( $default_woocommerce_slug, 'slug', 'woocommerce', $language );
+                $new_url = str_replace( '/'.$current_slug.'/', '/'.$translated_slug.'/', $new_url );
             }
         }
 

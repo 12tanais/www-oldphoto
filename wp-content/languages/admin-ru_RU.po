@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 4.9.x - Development - Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-07-25 07:37:58+0000\n"
+"PO-Revision-Date: 2018-09-30 20:13:53+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -36,7 +36,7 @@ msgstr "О нас"
 #: wp-admin/includes/file.php:1955
 msgctxt "personal data group label"
 msgid "About"
-msgstr "О нас"
+msgstr "Детали"
 
 #: wp-admin/includes/dashboard.php:1755
 msgid "https://wordpress.org/plugins/classic-editor"
