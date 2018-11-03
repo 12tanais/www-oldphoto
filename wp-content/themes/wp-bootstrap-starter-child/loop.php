@@ -1,9 +1,9 @@
-<div class="row">
+<div class="row  post-wrapper">
     <?php
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
     $new_query = new WP_Query(array(
         'category_name' => 'photos',
-        'posts_per_page' => 10,
+        'posts_per_page' => 12,
         'orderby' => 'date',
         'paged' => $paged
     ));
@@ -18,7 +18,7 @@
                             <!--                            <p>Дата публикации: --><?php //echo the_date() ?><!--</p>-->
                             <a href="<?php the_permalink(); ?>">
                                 <h4>
-                                    <?php trim_title_chars(25, '...'); ?>
+                                    <?php trim_title_chars(40, '...'); ?>
                                 </h4>
                             </a>
                         </div>
@@ -33,13 +33,13 @@
                     </div>
                 </div>
                 <div class="fun-box-text">
-                    <div class="fun-text">
-                        <p>
-                            <?php $main_content =  the_field('description');
-                            $tri_content = wp_trim_words($main_content, 7, '...');
-                            echo $tri_content; ?>
-                        </p>
-                    </div>
+<!--                    <div class="fun-text">-->
+<!--                        <p>-->
+<!--                            --><?php //$main_content =  the_field('description');
+//                            $tri_content = wp_trim_words($main_content, 7, '...');
+//                            echo $tri_content; ?>
+<!--                        </p>-->
+<!--                    </div>-->
                     <div class="fun-news-button">
                         <p class="text-center">
                             <a class="btn btn-light" href="<?php the_permalink(); ?>"

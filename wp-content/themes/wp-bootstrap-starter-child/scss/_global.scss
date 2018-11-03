@@ -1,10 +1,4 @@
-$gray-dark: #343a40;
-$background: rgb(126, 113, 99);
-$gray: #898989;
-$activeButton: #8b6c42;
-@import url('https://fonts.googleapis.com/css?family=Pattaya');
-@import url('https://fonts.googleapis.com/css?family=Lato');
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
+
 
 @mixin flex($flex) {
   display: -webkit-box;
@@ -91,4 +85,10 @@ $activeButton: #8b6c42;
     -moz-box-shadow: $top $left $right $blur $color;
     box-shadow: $top $left $right $blur $color;
   }
+}
+
+@mixin text-align($position){
+  text-align: $position;
+  text-align: -moz-$position;
+  text-align: -webkit-$position;
 }

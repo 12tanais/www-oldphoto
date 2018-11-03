@@ -12,7 +12,7 @@
     <footer id="colophon">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 order-xl-12"><p
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"><p
                             class="copy">&copy;
                         <span><?php echo date('Y'); ?></span> <?php echo '<a href="' . home_url() . '">' . get_bloginfo('name') . '</a>'; ?>
                     </p></div>
