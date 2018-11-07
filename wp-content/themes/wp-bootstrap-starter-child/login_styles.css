@@ -1,0 +1,45 @@
+body.login, body #loginform,body p .message, body.login #login_error, body.login .message, body.login form {
+    background: #0a0b0d;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    border-left-color: #0a0b0d;
+    color: #fff;
+}
+body.login h1 a:focus, body.login h1 a:hover, body.login h1:hover, body.login h1:focus{
+    color: #fff !important;
+    background-color: #0a0b0d;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+
+input#wp-submit.button-large{
+    background: #fff;
+    border:1px solid #fff;
+    color: #0a0b0d !important;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    border-radius: 0;
+    text-shadow: none;
+
+}
+body.login p label, body.login #nav a, body.login #backtoblog a, body.login #login_error a{
+    color:#fff;
+}
+.login form .input, .login form input[type=checkbox], .login input[type=text] {
+    border: 1px solid #fff;
+}
+/* Logo */
+.login h1 a {
+    background-image: url('./images/logo.png');
+    background-size: 150px 50px;
+    -webkit-background-size: 150px 50px;
+    -moz-background-size: 150px 50px;
+    -o-background-size: 150px 50px;
+    margin-bottom: 0;
+    margin-top: 10vh;
+    width: 130px;
+    height: 44px;
+}

@@ -15,7 +15,7 @@ header#masthead {
   }
   .navbar-brand {
     position: relative;
-    padding: 0 1% 0 1.5%;
+    padding: 0 1% 0 0;
     h1.logo {
       font: 400 40px 'Pattaya', sans-serif !important;
       text-transform: inherit;
@@ -69,20 +69,20 @@ header#masthead {
       }
       a.nav-link {
         color: #fff;
-        font: 100 1rem 'Playfair Display', serif !important;
+        font: 100 1rem 'IBM Plex Serif', serif !important;
         text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.2),
         1px 1px 1px rgba(255, 255, 255, 0.2),
         1px 1px 1px rgba(0, 0, 0, 0.7);
-        letter-spacing: 0.2em;
+        letter-spacing: 0.15em;
         padding: 1rem;
         text-transform: uppercase;
         @media (max-width: 1199.98px) {
           padding: 1rem 0.7rem;
-          font: 100 .9rem 'Playfair Display', serif;
+          font: 100 .9rem 'IBM Plex Serif', serif ;
         }
         @media (max-width: 991.98px) {
           padding: 0.6rem 0.7rem;
-          font: 100 1rem 'Playfair Display', serif;
+          font: 100 1rem 'IBM Plex Serif', serif ;
         }
         &:hover, &:focus {
           color: #adadad;
@@ -93,7 +93,7 @@ header#masthead {
         @media (max-width: 991.98px) {
           padding: 0.6rem 0.7rem;
           color: #fff;
-          font: 100 .9rem 'Playfair Display', serif;
+          font: 100 .9rem 'IBM Plex Serif', serif;
           text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.2), /* наверх и влево */
           1px 1px 1px rgba(255, 255, 255, 0.2), /* вниз и вправо */
           1px 1px 1px rgba(0, 0, 0, 0.7);

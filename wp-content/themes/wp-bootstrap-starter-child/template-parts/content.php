@@ -13,13 +13,17 @@
     <div class="row">
         <div class="col-md-12 col-lg-12">
             <header class="entry-header">
-                <div class="page-title">
-                    <?php
-                    if (is_single()) :
-                        the_title('<h1 class="entry-title">', '</h1>');
-                    else :
-                        the_title('<h2 class="entry-title"><a href="' . esc_url(get_permalink()) . '" rel="bookmark">', '</a></h2>');
-                    endif; ?>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="breadcrumbs" typeof="BreadcrumbList" vocab="https://schema.org/">
+                        <?php if (function_exists('bcn_display')) {
+                            bcn_display();
+                        } ?>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="page-title">
+                        <h1 class="text-left"><?php wp_title("", true); ?></h1>
+                    </div>
                 </div>
 
                 <?php if ('post' === get_post_type()) : ?>

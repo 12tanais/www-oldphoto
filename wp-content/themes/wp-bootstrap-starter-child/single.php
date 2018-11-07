@@ -8,10 +8,8 @@
  */
 
 get_header(); ?>
-    <section class="single-page">
         <div class="container">
-                    <?php
-                    while ( have_posts() ) : the_post();
+                    <?php while ( have_posts() ) : the_post();
 
                         get_template_part( 'template-parts/content', get_post_format() );
 
@@ -25,7 +23,6 @@ get_header(); ?>
                     endwhile; // End of the loop.
                     ?>
         </div>
-    </section>
 
 
 
