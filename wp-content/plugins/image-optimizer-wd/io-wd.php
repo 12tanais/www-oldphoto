@@ -4,7 +4,7 @@
  * Plugin Name: Image Optimizer WD
  * Plugin URI: https://10web.io/services/image-optimizer/
  * Description: Image Optimizer WordPress plugin enables you to resize, compress and optimize PNG, JPG, GIF files while maintaining image quality.
- * Version: 1.0.15
+ * Version: 1.0.17
  * Author: WebDorado
  * Author URI: https://web-dorado.com/
  * License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,9 +27,9 @@ define('IOWD_PREFIX', "iowd");
 define('IOWD_API_URL', "https://optimizer.10web.io/api/");
 
 
-if (version_compare(phpversion(), "5.4", '>')) {
+if (version_compare(phpversion(), "5.5", '>')) {
     $uri = $_SERVER['REQUEST_URI'];
-    if (version_compare(phpversion(), "5.4", '>') && (strpos($uri, "iowd") || (defined('DOING_AJAX') && DOING_AJAX && isset($_POST["action"]) && $_POST["action"] == "optimize"))) {
+    if (version_compare(phpversion(), "5.5", '>') && (strpos($uri, "iowd") || (defined('DOING_AJAX') && DOING_AJAX && isset($_POST["action"]) && $_POST["action"] == "optimize"))) {
         setlocale(LC_ALL, 'en_US.UTF-8');
         require_once('vendor/autoload.php');
     }
@@ -54,69 +54,78 @@ if (version_compare(phpversion(), "5.4", '>')) {
 
     }
 
-    if (!class_exists("TenWeb")) {
-        require_once(IOWD_DIR . '/wd/start.php');
+    add_action("init", "iowd_ten_web_lib_init");
+    function iowd_ten_web_lib_init()
+    {
+        if (!class_exists("TenWebLib")) {
+            require_once(IOWD_DIR . '/wd/start.php');
+        }
+        global $iowd_plugin_options;
+
+        $iowd_plugin_options = array(
+            "prefix"                 => IOWD_PREFIX,
+            "plugin_id"              => 69,
+            "wd_plugin_id"           => 181,
+            "plugin_title"           => "Image Optimizer WD",
+            "plugin_wordpress_slug"  => "image-optimizer-wdold",
+            "plugin_dir"             => IOWD_DIR,
+            "plugin_main_file"       => __FILE__,
+            "description"            => 'Optimize images and increase page load time!',
+            "plugin_features"        => array(
+                0 => array(
+                    "title"       => __("DASHBOARD REPORTS", IOWD_PREFIX),
+                    "description" => __("See how much space you’ve saved. Get reports on compression results for images you've optimized directly in your 10Web dashboard.", IOWD_PREFIX),
+                    "logo"        => IOWD_URL_IMG . "/overview/Reports.svg"
+                ),
+                1 => array(
+                    "title"       => __("SCHEDULE OPTIMIZATION", IOWD_PREFIX),
+                    "description" => __("Automatically optimize new images with scheduled optimization functionality. Choose to optimize images on an hourly, twice daily or daily basis.", IOWD_PREFIX),
+                    "logo"        => IOWD_URL_IMG . "/overview/Scheduling.svg"
+                ),
+                2 => array(
+                    "title"       => __("OPTIMIZE MORE IMAGES", IOWD_PREFIX),
+                    "description" => __("Have more than 1000 images on your website? Choose the premium plan to compress and optimize all images on your website.", IOWD_PREFIX),
+                    "logo"        => IOWD_URL_IMG . "/overview/More-Images.svg"
+                ),
+                3 => array(
+                    "title"       => __("EXTREME COMPRESSION", IOWD_PREFIX),
+                    "description" => __("Reduces image size up to 90% by choosing the extreme compression mode that will resize images with a tiny loss of quality.", IOWD_PREFIX),
+                    "logo"        => IOWD_URL_IMG . "/overview/Compression-Modes.svg"
+                ),
+                4 => array(
+                    "title"       => __("PDF FILE OPTIMIZATION", IOWD_PREFIX),
+                    "description" => __("Get the ability to compress and optimize any PDF documents on your WordPress website without losing image quality.", IOWD_PREFIX),
+                    "logo"        => IOWD_URL_IMG . "/overview/PDF-File-Optimization.svg"
+                ),
+
+            ),
+            "user_guide"             => array(),
+            "overview_welcome_image" => IOWD_URL_IMG . "/img-opt-logo.svg",
+            "video_youtube_id"       => "",
+            "plugin_wd_url"          => "https://10web.io/services/image-optimizer/",
+            "plugin_wd_demo_link"    => "",
+            "plugin_wd_addons_link"  => "",
+            "after_subscribe"        => "admin.php?page=iowd_settings",
+            "plugin_wizard_link"     => "",
+            "plugin_menu_title"      => __('Image optimizer', IOWD_PREFIX),
+            "plugin_menu_icon"       => IOWD_URL_IMG . "/icon.png",
+            "deactivate"             => true,
+            "subscribe"              => true,
+            "custom_post"            => "iowd_settings",
+            "menu_capability"        => "manage_options",
+            "menu_position"          => null,
+            "display_overview"       => 0
+        );
+
+        ten_web_lib_init($iowd_plugin_options);
     }
 
-    global $iowd_plugin_options;
-
-    $iowd_plugin_options = array(
-        "prefix"                 => IOWD_PREFIX,
-        "plugin_id"              => 69,
-        "wd_plugin_id"           => 181,
-        "plugin_title"           => "Image Optimizer WD",
-        "plugin_wordpress_slug"  => "image-optimizer-wd",
-        "plugin_dir"             => IOWD_DIR,
-        "plugin_main_file"       => __FILE__,
-        "description"            => 'Optimize images and increase page load time!',
-        "plugin_features"        => array(
-            0 => array(
-                "title"       => __("DASHBOARD REPORTS", IOWD_PREFIX),
-                "description" => __("See how much space you’ve saved. Get reports on compression results for images you've optimized directly in your 10Web dashboard.", IOWD_PREFIX),
-                "logo"        => IOWD_URL_IMG . "/overview/Reports.svg"
-            ),
-            1 => array(
-                "title"       => __("SCHEDULE OPTIMIZATION", IOWD_PREFIX),
-                "description" => __("Automatically optimize new images with scheduled optimization functionality. Choose to optimize images on an hourly, twice daily or daily basis.", IOWD_PREFIX),
-                "logo"        => IOWD_URL_IMG . "/overview/Scheduling.svg"
-            ),
-            2 => array(
-                "title"       => __("OPTIMIZE MORE IMAGES", IOWD_PREFIX),
-                "description" => __("Have more than 1000 images on your website? Choose the premium plan to compress and optimize all images on your website.", IOWD_PREFIX),
-                "logo"        => IOWD_URL_IMG . "/overview/More-Images.svg"
-            ),
-            3 => array(
-                "title"       => __("EXTREME COMPRESSION", IOWD_PREFIX),
-                "description" => __("Reduces image size up to 90% by choosing the extreme compression mode that will resize images with a tiny loss of quality.", IOWD_PREFIX),
-                "logo"        => IOWD_URL_IMG . "/overview/Compression-Modes.svg"
-            ),
-            4 => array(
-                "title"       => __("PDF FILE OPTIMIZATION", IOWD_PREFIX),
-                "description" => __("Get the ability to compress and optimize any PDF documents on your WordPress website without losing image quality.", IOWD_PREFIX),
-                "logo"        => IOWD_URL_IMG . "/overview/PDF-File-Optimization.svg"
-            ),
-
-        ),
-        "user_guide"             => array(),
-        "overview_welcome_image" => IOWD_URL_IMG . "/img-opt-logo.svg",
-        "video_youtube_id"       => "",
-        "plugin_wd_url"          => "https://10web.io/services/image-optimizer/",
-        "plugin_wd_demo_link"    => "",
-        "plugin_wd_addons_link"  => "",
-        "after_subscribe"        => "admin.php?page=iowd_settings",
-        "plugin_wizard_link"     => "",
-        "plugin_menu_title"      => __('Image optimizer', IOWD_PREFIX),
-        "plugin_menu_icon"       => IOWD_URL_IMG . "/icon.png",
-        "deactivate"             => true,
-        "subscribe"              => true,
-        "custom_post"            => "iowd_settings",
-        "menu_capability"        => "manage_options",
-        "menu_position"          => null,
-    );
-
-    ten_web_init($iowd_plugin_options);
 } else {
+    if (!function_exists('deactivate_plugins')) {
+        require_once ABSPATH . 'wp-admin/includes/plugin.php';
+    }
     add_action('admin_notices', 'iowd_php_version_admin_notice');
+    deactivate_plugins(IOWD_MAIN_FILE);
 }
 
 
@@ -125,7 +134,7 @@ function iowd_php_version_admin_notice()
     ?>
     <div class="notice notice-error">
         <h3>Image Optimizer WD</h3>
-        <p><?php _e('This version of the plugin requires PHP 5.5.0 or higher.', 'iowd'); ?></p>
+        <p><?php _e('This version of the plugin requires PHP 5.6.0 or higher.', 'iowd'); ?></p>
         <p><?php _e('We recommend you to update PHP or ask your hosting provider to do that.', 'buwd'); ?></p>
     </div>
     <?php

@@ -3,12 +3,12 @@
         exit;
     }
 
-    class TenWebConfig {
+    class TenWebLibConfig {
         public static $instance; 
 
         public $prefix = null;          
-        public $wd_plugin_id = null;          
         public $plugin_id = null;
+        public $wd_plugin_id = null;
         public $plugin_title = null;
         public $plugin_wordpress_slug = null;          
         public $plugin_dir = null;                   
@@ -36,17 +36,18 @@
         public $menu_capability = null;
         public $menu_position = null;
         public $overview_welcome_image = null;
+        public $display_overview = true;
 
         public function set_options( $options ){
 
             if(isset( $options["prefix"] )) {
                 $this->prefix = $options["prefix"];
             }
-            if(isset( $options["wd_plugin_id"] )) {
-                $this->wd_plugin_id =  $options["wd_plugin_id"];
-            }
             if(isset( $options["plugin_id"] )) {
                 $this->plugin_id =  $options["plugin_id"];
+            }
+            if(isset( $options["wd_plugin_id"] )) {
+                $this->wd_plugin_id =  $options["wd_plugin_id"];
             }
             if(isset( $options["plugin_title"] )) {
                 $this->plugin_title =  $options["plugin_title"];
@@ -75,9 +76,12 @@
             } 
             if(isset( $options["plugin_wd_demo_link"] )) {
                 $this->plugin_wd_demo_link =  $options["plugin_wd_demo_link"];
-            }             
-            if(isset( $options["plugin_wd_addons_link"] )) {
-                $this->plugin_wd_addons_link =  $options["plugin_wd_addons_link"];
+            }
+            if(isset( $options["plugin_wd_demo_link"] )) {
+                $this->plugin_wd_demo_link =  $options["plugin_wd_demo_link"];
+            }
+            if(isset( $options["plugin_wd_docs_link"] )) {
+                $this->plugin_wd_docs_link =  $options["plugin_wd_docs_link"];
             }
             if(isset( $options["plugin_wizard_link"] )) {
                 $this->plugin_wizard_link =  $options["plugin_wizard_link"];
@@ -108,6 +112,9 @@
             }
             if(isset( $options["overview_welcome_image"] )) {
                 $this->overview_welcome_image =  $options["overview_welcome_image"];
+            }
+            if(isset( $options["display_overview"] )) {
+                $this->display_overview =  $options["display_overview"];
             }
             // directories
             $this->wd_dir = dirname( $this->plugin_main_file ) . '/wd'; 

@@ -1,8 +1,17 @@
 <div class="row  post-wrapper">
+    <?php if(in_category('photos')):{
+        $category = 'photos';
+    }elseif(in_category('documents')):{
+        $category = 'documents';
+    }elseif(in_category('medals')):{
+        $category = 'medals';
+    }
+    ?>
+    <?php endif;?>
     <?php
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
     $new_query = new WP_Query(array(
-        'category_name' => 'photos',
+        'category_name' => $category,
         'posts_per_page' => 12,
         'orderby' => 'date',
         'paged' => $paged

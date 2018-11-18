@@ -20,6 +20,8 @@
 
 // ** Параметры MySQL: Эту информацию можно получить у вашего хостинг-провайдера ** //
 /** Имя базы данных для WordPress */
+define('WP_CACHE', true);
+define( 'WPCACHEHOME', 'D:\programs\xampp\htdocs\www-oldphoto\wp-content\plugins\wp-super-cache/' );
 define('DB_NAME', 'tanais');
 
 /** Имя пользователя MySQL */

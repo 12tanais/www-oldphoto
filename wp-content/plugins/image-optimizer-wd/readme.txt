@@ -4,7 +4,7 @@ Tags: : compress, image, images optimization, performance, photos, lossless, opt
 Requires at least: 3.9
 Tested up to: 4.9
 Requires PHP: 5.5
-Stable tag: 1.0.15
+Stable tag: 1.0.18
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -37,6 +37,10 @@ Upgrade to [Paid version](https://10web.io/services/image-optimizer/) to add fea
  
 
 == Changelog ==
+
+= 1.0.17 =
+*  Fixed: Conflict with photo gallery    
+*  Changed: wd lib     
 
 = 1.0.15 =
 *  Fixed: Bug on gallery and enabled directory  

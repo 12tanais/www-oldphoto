@@ -8,7 +8,7 @@ class IOWD
 {
 
     protected static $instance = null;
-    private static $version = '1.0.15';
+    private static $version = '1.0.17';
     private static $page;
     private $reg_autoloader = false;
     private $options = array();
@@ -76,7 +76,7 @@ class IOWD
     public function meta_links($meta_fields, $file)
     {
         if (IOWD_MAIN_FILE == $file) {
-            $plugin_url = "https://wordpress.org/support/plugin/image-optimizer-wd";
+            $plugin_url = "https://wordpress.org/support/plugin/image-optimizer-wdold";
             $prefix = 'iowd';
             $meta_fields[] = "<a href='" . $plugin_url . "' target='_blank'>" . __('Support Forum', $prefix) . "</a>";
             $meta_fields[] = "<a href='" . $plugin_url . "/reviews#new-post' target='_blank' title='" . __('Rate', $prefix) . "'>

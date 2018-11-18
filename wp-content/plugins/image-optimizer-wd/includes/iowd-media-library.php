@@ -8,11 +8,11 @@ class IOWD_MediaLibrary
 
     public function __construct()
     {
-        // add bulc action for wd optimize
+        // add bulc action for wdold optimize
         add_action('admin_footer', array($this, 'custom_bulk_admin_footer'));
         add_action('admin_action_wd_optimize', array($this, 'wd_optimize_bulk_handler'));
 
-        //wd optimize button to grid view, modal
+        //wdold optimize button to grid view, modal
         add_filter('attachment_fields_to_edit', array($this, 'add_wd_optimize_button'), 10, 2);
         add_filter('manage_media_columns', array($this, 'manage_columns'));
         add_action('manage_media_custom_column', array($this, 'media_wd_optimize_column'), 10, 2);
@@ -23,7 +23,7 @@ class IOWD_MediaLibrary
     }
 
     /**
-     * Adds wd optimize bulk action to media library page
+     * Adds wdold optimize bulk action to media library page
      *
      */
     public function wd_optimize_bulk_handler()
@@ -45,7 +45,7 @@ class IOWD_MediaLibrary
     }
 
     /**
-     * Adds wd optimize button to attachement modal and media grid view
+     * Adds wdold optimize button to attachement modal and media grid view
      *
      */
     public function add_wd_optimize_button($form_fields, $post)

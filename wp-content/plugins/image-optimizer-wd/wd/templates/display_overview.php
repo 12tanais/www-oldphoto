@@ -7,10 +7,10 @@
                 </a>
             </div>
             <div class="tenweb_header_right tenweb_clear">
-                <div class="inline-block header_text"><?php echo sprintf(__("Get Premium %s and Other Solutions Essential for Your WordPress Site", $wd_options->prefix), $wd_options->plugin_title); ?>
+                <div class="inline-block header_text"><?php echo sprintf(__("Get Premium %s and Other Solutions Essential for Your WordPress Site.", $wd_options->prefix), $wd_options->plugin_title); ?>
                 </div>
-                <a href="https://10web.io/services/image-optimizer/" target="_blank"
-                   class="button"><?php _e("Get started", $wd_options->prefix); ?></a>
+                <a href="https://my.10web.io/checkout/" target="_blank"
+                   class="button"><?php _e("Try Free", $wd_options->prefix); ?></a>
             </div>
         </div>
         <div class="tenweb_header_divider">
@@ -69,8 +69,8 @@
                     <p><?php _e("We’ll soon be offering affordable hosting solution with WordPress-friendly features and great customer support.", $wd_options->prefix); ?></p>
                 </div>
             </div>
-            <a href="https://10web.io/services/image-optimizer/" target="_blank"
-               class="button"><?php _e("Get started", $wd_options->prefix); ?></a>
+            <a href="https://my.10web.io/checkout/" target="_blank"
+               class="button"><?php _e("Get free for 14 days", $wd_options->prefix); ?></a>
             <div><a href="https://10web.io/" target="_blank"
                     class="more white"><?php _e("Learn More", $wd_options->prefix); ?></a></div>
         </div>
@@ -97,21 +97,28 @@
             </div>
         </div>
     <?php } 
-	if(trim($wd_options->plugin_wd_demo_link) != ""){ ?>
-		<div class="tenweb_how_it_works">
-			<div class="container">
-				<h2><?php _e("Checkout how it works", $wd_options->prefix); ?></h2>
-				<a href="<?php echo $wd_options->plugin_wd_demo_link; ?>" target="_blank"
-				   class="button transparent"><?php _e("Demo", $wd_options->prefix); ?></a>
-			</div>
-		</div>
-	<?php } ?>
+    if(trim($wd_options->plugin_wd_demo_link) != "" || trim($wd_options->plugin_wd_docs_link) != ""){ ?>
+      <div class="tenweb_how_it_works">
+        <div class="container">
+          <h2><?php _e("Checkout how it works", $wd_options->prefix); ?></h2>
+          <?php
+          if(trim($wd_options->plugin_wd_demo_link) != ""){ ?>
+          <a href="<?php echo $wd_options->plugin_wd_demo_link; ?>" target="_blank"
+             class="button transparent"><?php _e("Demo", $wd_options->prefix); ?></a>
+          <?php }
+          if(trim($wd_options->plugin_wd_docs_link) != ""){ ?>
+          <a href="<?php echo $wd_options->plugin_wd_docs_link; ?>" target="_blank"
+             class="button transparent"><?php _e("User Guide", $wd_options->prefix); ?></a>
+          <?php } ?>
+        </div>
+      </div>
+    <?php } ?>
     <div class="tenweb_footer <?php echo trim($wd_options->plugin_wd_demo_link) == "" ? "without_demo" : ""; ?>">
         <div class="container">
             <h2><?php echo $wd_options->description; ?></h2>
             <p><?php echo sprintf(__("Get Premium %s and Other Solutions Essential for Your WordPress Site.", $wd_options->prefix), $wd_options->plugin_title); ?></p>
-            <a href="https://10web.io/services/image-optimizer/" target="_blank"
-               class="button"><?php _e("Get started", $wd_options->prefix); ?></a>
+            <a href="https://my.10web.io/checkout/" target="_blank"
+               class="button"><?php _e("Get free for 14 days", $wd_options->prefix); ?></a>
         </div>
     </div>
 </div>
