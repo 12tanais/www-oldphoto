@@ -32,7 +32,7 @@ get_header(); ?>
                     $new_query->the_post(); ?>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 container-wrapper">
                         <div class="row post-wrapper">
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
                                 <div class="img-wrapper">
                                     <div class="post-img" style="background-image: url('<?php
                                     $thumb_id = get_post_thumbnail_id();
@@ -42,9 +42,11 @@ get_header(); ?>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 d-flex flex-column align-items-start justify-content-between">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 d-flex flex-column align-items-start justify-content-between">
                                 <div class="title-wrapper">
                                     <a href="<?php the_permalink(); ?>">
+                                        <h1><?php  ++$i ;
+                                        echo $i ?></h1>
                                         <h4>
                                             <?php trim_title_chars(40, '...'); ?>
                                         </h4>

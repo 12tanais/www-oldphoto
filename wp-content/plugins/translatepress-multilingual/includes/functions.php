@@ -165,6 +165,30 @@ function trp_sanitize_string( $filtered ){
 }
 
 
+/**
+ * function that checks if $_REQUEST['trp-edit-translation'] is set or if it has a certain value
+ */
+function trp_is_translation_editor( $value = '' ){
+    if( isset( $_REQUEST['trp-edit-translation'] ) ){
+        if( !empty( $value ) ) {
+            if( $_REQUEST['trp-edit-translation'] === $value ) {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            $possible_values = array ('preview', 'true');
+            if( in_array( $_REQUEST['trp-edit-translation'], $possible_values ) ) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
 
 /** Compatibility functions */
 
@@ -555,4 +579,29 @@ add_filter('ginger_iframe_banner', 'trp_do_shortcode', 999 );
 add_filter('ginger_text_banner', 'trp_do_shortcode', 999 );
 function trp_do_shortcode($content){
     return do_shortcode(stripcslashes($content));
+}
+
+/**
+ * Debuger function. Mainly designed for the get_url_for_language() function
+ *
+ * @since 1.3.6
+ *
+ * @param bool $enabled
+ * @param array $logger
+ */
+function trp_bulk_debug($debug = false, $logger = array()){
+    if(!$debug){
+        return;
+    }
+    error_log('---------------------------------------------------------');
+    $key_length = '';
+    foreach ($logger as $key => $value){
+        if ( strlen($key) > $key_length)
+            $key_length = strlen($key);
+    }
+
+    foreach ($logger as $key => $value){
+        error_log("$key :   " . str_repeat(' ', $key_length - strlen($key)) . $value);
+    }
+    error_log('---------------------------------------------------------');
 }

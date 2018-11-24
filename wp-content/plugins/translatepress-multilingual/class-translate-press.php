@@ -40,7 +40,7 @@ class TRP_Translate_Press{
         define( 'TRP_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
         define( 'TRP_PLUGIN_BASE', plugin_basename( __DIR__ . '/index.php' ) );
         define( 'TRP_PLUGIN_SLUG', 'translatepress-multilingual' );
-        define( 'TRP_PLUGIN_VERSION', '1.3.5' );
+        define( 'TRP_PLUGIN_VERSION', '1.3.6' );
 
         $this->load_dependencies();
         $this->initialize_components();
@@ -73,6 +73,7 @@ class TRP_Translate_Press{
         require_once TRP_PLUGIN_DIR . 'includes/class-machine-translator.php';
         require_once TRP_PLUGIN_DIR . 'includes/class-query.php';
         require_once TRP_PLUGIN_DIR . 'includes/class-url-converter.php';
+        require_once TRP_PLUGIN_DIR . 'includes/class-uri.php';
         require_once TRP_PLUGIN_DIR . 'includes/class-plugin-notices.php';
         require_once TRP_PLUGIN_DIR . 'includes/functions.php';
         require_once TRP_PLUGIN_DIR . 'assets/lib/simplehtmldom/simple_html_dom.php';
@@ -132,7 +133,6 @@ class TRP_Translate_Press{
      */
     protected function define_frontend_hooks(){
         $this->loader->add_action( 'init', $this->translation_render, 'start_output_buffer', 0 );
-        $this->loader->add_action( 'admin_init', $this->translation_render, 'start_output_buffer' );
         $this->loader->add_action( 'wp_enqueue_scripts', $this->translation_render, 'enqueue_dynamic_translation', 1 );
         $this->loader->add_filter( 'wp_redirect', $this->translation_render, 'force_preview_on_url_redirect', 99, 2 );
         $this->loader->add_filter( 'wp_redirect', $this->translation_render, 'force_language_on_form_url_redirect', 99, 2 );

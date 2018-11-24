@@ -87,13 +87,10 @@
                         $post_id_my = array(get_the_ID());
                         if( in_category( 'photos' ) ){
                             $categoryPost = 'photos';
-                            $className =  'col-lg-3 col-xl-3';
                         }elseif ( in_category('documents') ) {
                             $categoryPost = 'documents';
-                            $className =  'col-lg-4 col-xl-4';
                         }elseif ( in_category('medals') ){
                             $categoryPost = 'medals';
-                            $className =  'col-lg-3 col-xl-3';
                         }
                         $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
@@ -107,15 +104,14 @@
                         ?>
 
                         <?php while ($new_query->have_posts()) : $new_query->the_post(); ?>
-                            <div class="col-12 col-sm-12 col-md-6 d-flex flex-wrap <?php echo $className?>">
+                            <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 d-flex flex-wrap ">
                                 <div class="post-box">
                                     <div class="fun-box-img">
                                         <div class="fun-line">
                                             <div class="title-box d-flex align-items-center justify-content-center">
-                                                <!--                            <p>Дата публикации: --><?php //echo the_date() ?><!--</p>-->
                                                 <a href="<?php the_permalink(); ?>">
                                                     <h4>
-                                                        <?php trim_title_chars(40, '...'); ?>
+                                                        <?php trim_title_chars(35, '...'); ?>
                                                     </h4>
                                                 </a>
                                             </div>

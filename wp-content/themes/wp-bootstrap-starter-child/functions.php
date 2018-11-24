@@ -1,4 +1,12 @@
 <?php
+//new fonts
+function theme_assets() {
+    wp_enqueue_style( 'et-googleFonts', "https://fonts.googleapis.com/css?family=IBM+Plex+Serif|Pattaya|Roboto&subset=cyrillic-ext" );
+    wp_enqueue_style( 'et-googleFonts', "https://fonts.googleapis.com/css?family=Roboto+Condensed:700&subset=cyrillic" );
+}
+add_action( 'wp_enqueue_scripts', 'theme_assets' );
+
+
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
@@ -13,13 +21,6 @@ endif;
 add_action( 'wp_enqueue_scripts', 'chld_thm_cfg_parent_css', 10 );
 
 // END ENQUEUE PARENT ACTION
-
-//added menu in footer
-register_nav_menu('primary', __('Primary Menu', 'Bootstrap Canvas WP Child'));
-register_nav_menus(array(
-    'primary' => __('Primary Menu', 'Bootstrap Canvas WP Child'),
-    'footer_menu' => 'Footer Menu',
-));
 
 // logo page
 function custom_login_css()
@@ -74,6 +75,26 @@ if (!is_admin()) {
 wp_enqueue_script('jquery');
 }
 
+
+
+function updateNumbers() {
+    global $wpdb;
+    $querystr = "SELECT $wpdb->posts.* FROM $wpdb->posts WHERE $wpdb->posts.post_status = 'publish' AND $wpdb->posts.post_type = 'post' ";
+    $pageposts = $wpdb->get_results($querystr, OBJECT);
+    $counts = 0 ;
+    if ($pageposts):
+        foreach ($pageposts as $post):
+            setup_postdata($post);
+            $counts++;
+            add_post_meta($post->ID, 'incr_number', $counts, true);
+            update_post_meta($post->ID, 'incr_number', $counts);
+        endforeach;
+    endif;
+}
+
+add_action ( 'publish_post', 'updateNumbers' );
+add_action ( 'deleted_post', 'updateNumbers' );
+add_action ( 'edit_post', 'updateNumbers' );
 
 
 
