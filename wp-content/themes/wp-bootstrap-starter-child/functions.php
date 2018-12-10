@@ -98,5 +98,49 @@ add_action ( 'edit_post', 'updateNumbers' );
 
 
 
+add_action('wp_ajax_pcht_posts', 'pcht_posts');
+add_action('wp_ajax_nopriv_pcht_posts', 'pcht_posts');
+function pcht_posts($postID){
+    $catID=intval( $_POST['param'] );
+    ?>
+
+    <?php
+
+    $args = array(
+        'cat'=>$catID,
+        'showposts'=>'2'
+    );
+
+    $recent = new WP_Query($args);
+
+    while ( $recent->have_posts() ) : $recent->the_post();?>
+
+        <div class="modal-header">
+            <?php the_title( '<h2 class="modal-title text-center">', '</h2>' ); ?>
+        </div>
+
+        <div class="row loader">
+            <div class="col-lg-12" style="padding: 0 30px;">
+                <?php //the_content();
+                the_excerpt();
+                ?>
+            </div>
+            <a href="<?php echo get_permalink(); ?>">Читать полностью</a>
+        </div>
+
+
+
+
+
+    <?php endwhile; ?>
+    <?php
+    wp_die();
+}
+
+
+
+
+
+
 
 

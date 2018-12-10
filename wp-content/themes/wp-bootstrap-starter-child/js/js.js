@@ -74,10 +74,25 @@ jQuery(document).ready(function(){
             jQuery('.navbar-nav').css({
                 'max-height': 208, 'overflow': 'auto', '-webkit-overflow-scrolling': 'touch'
             });
-            // jQuery('.mouse-movement').css({
-            //     'top': '89%'
-            // });
         }
     });
 });
+// jQuery(document).ready(function () {
+//     jQuery(function ($) {
+//         let $content = $('#wrapper'),
+//             $container = $(".elements-container");
+//         $content.on('click', '#pagination a', function (e) {
+//             $container.css("height", $container.height());
+//             e.preventDefault();
+//             let link = $(this).attr('href');
+//             $content.fadeOut(10, function () {
+//                 $(this).load(link + ' #content', function () {
+//                     $(this).fadeIn(10);
+//                     $container.css("height", "auto");
+//                 });
+//             });
+//         });
+//     });
+// });
+
 

@@ -78,20 +78,27 @@
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div class="row">
+                <?php
+
+                if (in_category('photos')) {
+                    $categoryPost = 'photos';
+                } elseif (in_category('documents')) {
+                    $categoryPost = 'documents';
+                } elseif (in_category('medals')) {
+                    $categoryPost = 'medals';
+                } elseif (in_category('interchange')) {
+                    $categoryPost = 'interchange';
+                } ?>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <?php if($categoryPost != 'interchange' ):?>
                     <h2 class="text-center">Похожие публикации</h2>
+                    <?php else:?>
+                    <h2 class="text-center">Также вас может заинтересовать</h2>
+                    <?php endif;?>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="row post-wrapper">
                         <?php
-                        $post_id_my = array(get_the_ID());
-                        if( in_category( 'photos' ) ){
-                            $categoryPost = 'photos';
-                        }elseif ( in_category('documents') ) {
-                            $categoryPost = 'documents';
-                        }elseif ( in_category('medals') ){
-                            $categoryPost = 'medals';
-                        }
                         $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
                         $new_query = new WP_Query(array(

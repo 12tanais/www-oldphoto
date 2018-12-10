@@ -1,11 +1,16 @@
 @import 'global';
-.page-id-16, .page-id-19, .page-id-22, .page-id-112, .single, .archive{
+.page-id-16, .page-id-19, .page-id-22, .page-id-112,.page-id-114, .single, .archive{
   footer#colophon {
     position: relative;
     bottom: 0;
     display: block;
     overflow: hidden;
 
+  }
+}
+.page-id-114{
+  footer#colophon {
+    margin-top: 2rem;
   }
 }
 
@@ -30,7 +35,7 @@ footer#colophon {
     margin-right: 1px;
     padding-bottom: 0 !important;
     opacity: 0.98;
-    background-color: $gray-dark !important;
+    background: $gray-dark;
     filter: contrast(115%);
     @include border-pos-rad(4px, 4px,0, 0);
     @include box-shadow(0 ,-4px, 10px, -2px,rgba(0, 0, 0, 0.3));

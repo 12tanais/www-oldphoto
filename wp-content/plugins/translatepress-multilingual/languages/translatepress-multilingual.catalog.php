@@ -14,8 +14,9 @@
 <?php __("Deactivate License", "translatepress-multilingual"); ?>
 <?php __("Method of language detection", "translatepress-multilingual"); ?>
 <?php __("Select how the language should be detected for first time visitors.<br>The visitor's last displayed language will be remembered through cookies.", "translatepress-multilingual"); ?>
-<?php __("Translation Languages", "translatepress-multilingual"); ?>
+<?php __("All Languages", "translatepress-multilingual"); ?>
 <?php __("Language", "translatepress-multilingual"); ?>
+<?php __("Code", "translatepress-multilingual"); ?>
 <?php __("Slug", "translatepress-multilingual"); ?>
 <?php __("Active", "translatepress-multilingual"); ?>
 <?php __("Are you sure you want to remove this language?", "translatepress-multilingual"); ?>
@@ -64,9 +65,8 @@
 <?php __("Post Slug", "translatepress-multilingual"); ?>
 <?php __("Page Title", "translatepress-multilingual"); ?>
 <?php __("<strong>TranslatePress</strong> requires <strong><a href=\"http://php.net/manual/en/book.mbstring.php\">Multibyte String PHP library</a></strong>. Please contact your server administrator to install it on your server.", "translatepress-multilingual"); ?>
-<?php __("All Languages", "translatepress-multilingual"); ?>
 <?php __("Select the language you wish to make your website available in.", "translatepress-multilingual"); ?>
-<?php __("To add <strong>more then two languages</strong> and support for SEO Title, Description, Slug and more checkout <a href=\"%s\" class=\"button button-primary\" target=\"_blank\" title=\"TranslatePress Pro\">TranslatePress PRO</a>", "translatepress-multilingual"); ?>
+<?php __("To add <strong>more then two languages</strong> and support for SEO Title, Description, Slug and more check out <a href=\"%s\" class=\"button button-primary\" target=\"_blank\" title=\"TranslatePress Pro\">TranslatePress PRO</a>", "translatepress-multilingual"); ?>
 <?php __("Not only you are getting extra features and premium support, you also help fund the future development of TranslatePress.", "translatepress-multilingual"); ?>
 <?php __("Default Language", "translatepress-multilingual"); ?>
 <?php __("Select the original language your website was written in. ", "translatepress-multilingual"); ?>
@@ -138,3 +138,6 @@
 <?php __("Batch size", "translatepress-multilingual"); ?>
 <?php __("The number of rows to check at once.<br>Choosing a smaller number helps solve the 502 error \"Page took too long to respond\" on large databases.<br>May take several minutes depending on the database size.", "translatepress-multilingual"); ?>
 <?php __("Remove duplicate rows", "translatepress-multilingual"); ?>
+<?php __(" TranslatePress Settings", "translatepress-multilingual"); ?>
+<?php __("Translator", "translatepress-multilingual"); ?>
+<?php __("Allow this user to translate the website.", "translatepress-multilingual"); ?>

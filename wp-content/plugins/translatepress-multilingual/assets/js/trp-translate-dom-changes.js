@@ -23,7 +23,6 @@ function TRP_Translator(){
             dataType: 'json',
             data: {
                 action: 'trp_get_translations',
-                async: false,
                 security: trp_localized_text['gettranslationsnonce'],
                 language: language_to_query,
                 original_language: original_language,
@@ -131,6 +130,11 @@ function TRP_Translator(){
                     if ( mutation.addedNodes[i].textContent && _this.trim( mutation.addedNodes[i].textContent.trim(), except_characters ) != '' ) {
                         var node = jQuery( mutation.addedNodes[i] );
 
+                        /* if it is an anchor add the trp-edit-translation=preview parameter to it */
+                        if ( typeof parent.trpEditor !== 'undefined' ) {
+                            jQuery(mutation.addedNodes[i]).find('a').context.href = _this.update_query_string('trp-edit-translation', 'preview', jQuery(mutation.addedNodes[i]).find('a').context.href);
+                        }
+
                         // skip nodes containing these attributes
                         var attr_array = ['data-no-translation', 'data-no-dynamic-translation', 'data-trpgettextoriginal', 'data-trp-translate-id'];
                         var skip_string = false;
@@ -145,10 +149,6 @@ function TRP_Translator(){
                             continue;
                         }
 
-                        /* if it is an anchor add the trp-edit-translation=preview parameter to it */
-                        if ( typeof parent.trpEditor !== 'undefined' ) {
-                            jQuery(mutation.addedNodes[i]).find('a').context.href = _this.update_query_string('trp-edit-translation', 'preview', jQuery(mutation.addedNodes[i]).find('a').context.href);
-                        }
                         var direct_string = get_string_from_node( mutation.addedNodes[i] );
                         if ( direct_string ) {
                             if ( _this.trim( direct_string.textContent, except_characters ) != '' ) {
@@ -268,7 +268,8 @@ function TRP_Translator(){
             if( window.parent.jQuery('#trp-preview-iframe').length != 0 ) {
                 var settingsdata = "" + settings.data;
                 if( typeof settings.data == 'undefined' || jQuery.isEmptyObject( settings.data ) || settingsdata.indexOf('action=trp_') === -1 ) {
-                    window.parent.jQuery('#trp-preview-iframe').trigger('load');
+                    window.parent.jQuery('#trp-preview-iframe').trigger('trp_page_loaded');
+                    jQuery( window ).trigger('trp_page_loaded');
                 }
             }
         });

@@ -42,6 +42,9 @@ get_header(); ?>
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                </div>-->
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 search-wrapper">
+                    <div class="search-element"><?php echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?></div>
+                </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="row  post-wrapper">
                         <?php

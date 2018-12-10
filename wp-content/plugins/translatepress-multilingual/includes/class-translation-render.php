@@ -29,13 +29,16 @@ class TRP_Translation_Render{
     public function start_output_buffer(){
         global $TRP_LANGUAGE;
 
-        if( ( is_admin() && !TRP_Translation_Manager::is_ajax_on_frontend() ) || trp_is_translation_editor( 'true' ) ){
+        //when we check if is an ajax request in frontend we also set proper REQUEST variables and language global so we need to run this for every buffer
+        $ajax_on_frontend = TRP_Translation_Manager::is_ajax_on_frontend();//TODO refactor this function si it just checks and does not set variables
+
+        if( ( is_admin() && !$ajax_on_frontend ) || trp_is_translation_editor( 'true' ) ){
             return;//we have two cases where we don't do anything: we are on the admin side and we are not in an ajax call or we are in the left side of the translation editor
         }
         else {
             mb_http_output("UTF-8");
             if ( $TRP_LANGUAGE == $this->settings['default-language'] && !trp_is_translation_editor() ) {
-                ob_start(array($this, 'clear_trp_tags'));//on default language when we are not in editor we just need to clear any trp tags that could still be present
+                ob_start(array($this, 'clear_trp_tags'), 4096);//on default language when we are not in editor we just need to clear any trp tags that could still be present
             } else {
                 ob_start(array($this, 'translate_page'));//everywhere else translate the page
             }
@@ -305,17 +308,23 @@ class TRP_Translation_Render{
         if ($language_code === false) {
             return $output;
         }
+        if ( $language_code == $this->settings['default-language'] ){
+        	// Don't translate regular strings (non-gettext) when we have no other translation languages except default language ( count( $this->settings['publish-languages'] ) > 1 )
+        	$translate_normal_strings = false;
+        }else{
+	        $translate_normal_strings = true;
+        }
 
 	    $preview_mode = isset( $_REQUEST['trp-edit-translation'] ) && $_REQUEST['trp-edit-translation'] == 'preview';
 
-	    $is_json = is_array( $json_array = json_decode( $output, true ) );
+        $json_array = json_decode( $output, true );
 	    /* If we have a json response we need to parse it and only translate the nodes that contain html
 	     *
 	     * Removed is_ajax_on_frontend() check because we need to capture custom ajax events.
 		 * Decided that if $output is json decodable it's a good enough check to handle it this way.
 		 * We have necessary checks so that we don't get to this point when is_admin(), or when language is not default. 
 	     */
-	    if( $is_json ) {
+	    if( $json_array && $json_array != $output ) {
 		    /* if it's one of our own ajax calls don't do nothing */
 	        if ( ! empty( $_REQUEST['action'] ) && strpos( $_REQUEST['action'], 'trp_' ) === 0 && $_REQUEST['action'] != 'trp_split_translation_block' ) {
 		        return $output;
@@ -323,27 +332,9 @@ class TRP_Translation_Render{
 
 	        //check if we have a json response
 	        if ( ! empty( $json_array ) ) {
-		        foreach ( $json_array as $key => $value ) {
-			        if ( ! empty( $value ) ) {
-				        if ( ! is_array( $value ) ) { //if the current element is not an array check if it a html text and translate
-                            $html_decoded_value = html_entity_decode( (string) $value );
-					        if ( $html_decoded_value != strip_tags( $html_decoded_value ) ) {
-						        $json_array[ $key ] = $this->translate_page( stripslashes( $value ) );
-					        }
-				        } else {//look for the html elements
-					        foreach ( $value as $k => $v ) {
-						        if ( ! empty( $v ) ) {
-							        if ( ! is_array( $v ) ) {
-                                        $html_decoded_v = html_entity_decode( (string) $v );
-								        if ( $html_decoded_v != strip_tags( $html_decoded_v ) ) {
-									        $json_array[ $key ][ $k ] = $this->translate_page( stripslashes( $v ) );
-								        }
-							        }
-						        }
-					        }
-				        }
-			        }
-		        }
+	            if( !is_array( $json_array ) )//make sure we send an array as json_decode even with true parameter might not return one
+                    $json_array = array( $json_array );
+                array_walk_recursive( $json_array, array( $this, 'translate_json' ) );
 	        }
 
 	        return trp_safe_json_encode( $json_array );
@@ -374,13 +365,14 @@ class TRP_Translation_Render{
 	    if ( ! $this->translation_manager ) {
 		    $this->translation_manager = $trp->get_component( 'translation_manager' );
 	    }
-        $all_existing_translation_blocks = $this->trp_query->get_all_translation_blocks( $language_code );
-	    // trim every translation block original now, to avoid over-calling trim function later
-	    foreach ( $all_existing_translation_blocks as $key => $existing_tb ){
-		    $all_existing_translation_blocks[$key]->trimmed_original = $this->trim_translation_block( $all_existing_translation_blocks[$key]->original );
+	    if ( $translate_normal_strings ) {
+		    $all_existing_translation_blocks = $this->trp_query->get_all_translation_blocks( $language_code );
+		    // trim every translation block original now, to avoid over-calling trim function later
+		    foreach ( $all_existing_translation_blocks as $key => $existing_tb ) {
+			    $all_existing_translation_blocks[ $key ]->trimmed_original = $this->trim_translation_block( $all_existing_translation_blocks[ $key ]->original );
+		    }
+		    $merge_rules = $this->translation_manager->get_merge_rules();
 	    }
-		$merge_rules = $this->translation_manager->get_merge_rules();
-
         $html = trp_str_get_html($output, true, true, TRP_DEFAULT_TARGET_CHARSET, false, TRP_DEFAULT_BR_TEXT, TRP_DEFAULT_SPAN_TEXT);
 
         /**
@@ -402,28 +394,29 @@ class TRP_Translation_Render{
             }
             else{
                 $trp_attr_rows[] = $row;
-
-	            $translation_block = $this->find_translation_block( $row, $all_existing_translation_blocks, $merge_rules );
-	            if ( $translation_block ){
-		            $existing_classes = $row->getAttribute( 'class' );
-		            if ( $translation_block->block_type == 1 ) {
-		            	$found_inner_translation_block = false;
-			            foreach( $row->children() as $child ){
-				            if ( $this->find_translation_block( $child, array( $translation_block ), $merge_rules ) != null ){
-				            	$found_inner_translation_block = true;
-				            	break;
+	            if ( $translate_normal_strings ) {
+		            $translation_block = $this->find_translation_block( $row, $all_existing_translation_blocks, $merge_rules );
+		            if ( $translation_block ) {
+			            $existing_classes = $row->getAttribute( 'class' );
+			            if ( $translation_block->block_type == 1 ) {
+				            $found_inner_translation_block = false;
+				            foreach ( $row->children() as $child ) {
+					            if ( $this->find_translation_block( $child, array( $translation_block ), $merge_rules ) != null ) {
+						            $found_inner_translation_block = true;
+						            break;
+					            }
 				            }
+				            if ( ! $found_inner_translation_block ) {
+					            // make sure we find it later exactly the way it is in DB
+					            $row->innertext = $translation_block->original;
+					            $row->setAttribute( 'class', $existing_classes . ' translation-block' );
+				            }
+			            } else if ( $preview_mode && $translation_block->block_type == 2 && $translation_block->status != 0 ) {
+				            // refactor to not do this for each
+				            $row->setAttribute( 'data-trp-translate-id', $translation_block->id );
+				            $row->setAttribute( 'data-trp-translate-id-deprecated', $translation_block->id );
+				            $row->setAttribute( 'class', $existing_classes . 'trp-deprecated-tb' );
 			            }
-		            	if ( !$found_inner_translation_block ) {
-				            // make sure we find it later exactly the way it is in DB
-				            $row->innertext = $translation_block->original;
-				            $row->setAttribute( 'class', $existing_classes . ' translation-block' );
-			            }
-		            }else if ( $preview_mode && $translation_block->block_type == 2 && $translation_block->status != 0 ) {
-		            	// refactor to not do this for each
-			            $row->setAttribute( 'data-trp-translate-id', $translation_block->id );
-			            $row->setAttribute( 'data-trp-translate-id-deprecated', $translation_block->id );
-			            $row->setAttribute( 'class', $existing_classes . 'trp-deprecated-tb' );
 		            }
 	            }
 
@@ -491,6 +484,11 @@ class TRP_Translation_Render{
         /* perform preg replace on the remaining trp-gettext tags */
 	    $trpremoved = preg_replace( '/(<|&lt;)trp-gettext (.*?)(>|&gt;)/', '', $trpremoved );
 	    $trpremoved = preg_replace( '/(<|&lt;)(\\\\)*\/trp-gettext(>|&gt;)/', '', $trpremoved );
+
+	    if ( ! $translate_normal_strings ) {
+		    return $trpremoved;
+	    }
+
         $html = trp_str_get_html($trpremoved, true, true, TRP_DEFAULT_TARGET_CHARSET, false, TRP_DEFAULT_BR_TEXT, TRP_DEFAULT_SPAN_TEXT);
 
         $no_translate_selectors = apply_filters( 'trp_no_translate_selectors', array( '#wpadminbar' ), $TRP_LANGUAGE );
@@ -732,6 +730,22 @@ class TRP_Translation_Render{
         }
 
         return $html->save();
+    }
+
+    /**
+     * Callback for the array_walk_recursive to translate json. It translates the values in the resulting json array if they contain html
+     * @param $value
+     */
+    function translate_json (&$value) {
+        //check if it a html text and translate
+        $html_decoded_value = html_entity_decode( (string) $value );
+        if ( $html_decoded_value != strip_tags( $html_decoded_value ) ) {
+            $value =   $this->translate_page( stripslashes( $value ) );
+            /*the translate-press tag can appear on a gettext string without html and should not be left in the json
+            as we don't know how it will be inserted into the page by js */
+            $value = preg_replace( '/(<|&lt;)translate-press (.*?)(>|&gt;)/', '', $value );
+            $value = preg_replace( '/(<|&lt;)(\\\\)*\/translate-press(>|&gt;)/', '', $value );
+        }
     }
 
     /**
@@ -1088,6 +1102,8 @@ class TRP_Translation_Render{
         if ( TRP_Translation_Manager::is_ajax_on_frontend() && isset( $_REQUEST['trp-edit-translation'] ) && $_REQUEST['trp-edit-translation'] === 'preview' && $output != false ) {
             $result = json_decode($output, TRUE);
             if ( json_last_error() === JSON_ERROR_NONE) {
+                if( !is_array( $result ) )//make sure we send an array as json_decode even with true parameter might not return one
+                    $result = array($result);
                 array_walk_recursive($result, array($this, 'callback_add_preview_arg'));
                 $output = trp_safe_json_encode($result);
             } //endif

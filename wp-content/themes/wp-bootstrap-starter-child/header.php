@@ -31,7 +31,7 @@
             <div class="nav-cover"></div>
             <nav class="navbar navbar-expand-xl p-0">
                 <div class="navbar-brand">
-                    <a href="<?php echo get_page_link(7) ?>">
+                    <a href="<?php echo get_home_url(); ?>">
                         <h1 class="logo">OldPhoto</h1>
                     </a>
                 </div>

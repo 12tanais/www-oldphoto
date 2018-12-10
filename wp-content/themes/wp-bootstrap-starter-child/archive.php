@@ -23,6 +23,9 @@ get_header(); ?>
                     <h1 class="text-left"><?php wp_title("", true); ?></h1>
                 </div>
             </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 search-wrapper">
+                <div class="search-element"><?php echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?></div>
+            </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <?php get_template_part('loop', 'page'); ?>
             </div>
