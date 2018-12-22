@@ -51,6 +51,7 @@ function trim_title_chars($count, $after)
 function load(){
     // my js file
     wp_enqueue_script('view_script', get_template_directory_uri().'-child/js/js.js','', '1.0', true);
+    wp_enqueue_script('pagination_js', get_template_directory_uri() . '-child/js/pagination.js', ['jquery']);
 }
 add_action('wp_enqueue_scripts', 'load');
 

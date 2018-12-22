@@ -14,7 +14,6 @@ $gray-dark: #343a40;
 $background: rgb(126, 113, 99);
 $gray: #898989;
 $black: #0a0b0d;
-$get-path-to-assets: "http://localhost/www-oldphoto/wp-content/themes/wp-bootstrap-starter-child";
 
 @import 'header';
 @import 'footer';
@@ -75,7 +74,7 @@ a {
   }
 
   section#comparison div.comp {
-    background: url(#{$get-path-to-assets}/images/background001.jpg) no-repeat center top fixed;
+    background: url(./images/background001.jpg) no-repeat center top fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -93,7 +92,7 @@ a {
   }
 
   section#comparison div.comp div {
-    background: url(#{$get-path-to-assets}/images/background002.jpg) no-repeat center top fixed;
+    background: url(./images/background002.jpg) no-repeat center top fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -439,7 +438,7 @@ a {
   }
 }
 
-.page-id-16, .page-id-19, .page-id-22, .page-id-112 {
+.photos-page, .page-documents, .page-medals, .page-novelty {
   .btn {
     font: 100 .9rem 'IBM Plex Serif', serif !important;
     letter-spacing: .15rem;
@@ -447,10 +446,10 @@ a {
   }
 }
 
-.page-id-13 {
+.contact-page {
   .form-wrapper {
     min-height: calc(100vh - 260px);
-    margin-bottom: 40px;
+    margin: 20px 0;
     @include flex(flex);
     @include flex-direction(column);
     @include justify-content(center);
@@ -480,9 +479,19 @@ a {
   }
 }
 
-.page-id-16, .page-id-19, .page-id-22, .archive, .page-id-112, .single {
+.page-photos, .page-documents, .page-medals, .archive, .page-novelty, .single {
   .container {
     margin-top: 0;
+    .ajax-search-box {
+      background: darkgray;
+      margin: 0 15px 30px;
+      width: 100%;
+      @include border-radius(4px);
+      .ajax-search {
+        float: right;
+        padding-right: 15px;
+      }
+    }
     .post-box {
       margin-bottom: 20px;
       padding: 15px;
@@ -493,6 +502,7 @@ a {
       margin-right: auto;
       margin-left: auto;
       border: 1px solid lightgrey;
+      @include border-radius(4px);
       &:hover {
         @include box-shadow(0, 1px, 3px, 0, rgba(0, 0, 0, 0.055));
       }
@@ -558,19 +568,22 @@ a {
       }
     }
     .pagination_box {
-      margin-bottom: 10px;
+      margin-bottom: 50px;
       div#pagination {
         text-align: center;
         color: $gray-dark;
         a.page-numbers {
-
+          color: $gray-dark;
+        }
+        .current{
+          font-weight: 700;
         }
       }
     }
   }
 }
 
-.page-id-114 {
+.page-exchange {
   .container-wrapper {
     padding: 0;
     .post-wrapper {
