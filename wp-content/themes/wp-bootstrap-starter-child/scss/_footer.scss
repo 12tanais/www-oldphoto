@@ -1,12 +1,13 @@
 @import 'global';
-.page-photos, .page-contacts, .page-documents, .page-medals, .page-novelty, .single, .archive{
+.page-photos, .page-contacts, .page-documents, .page-medals, .page-novelty, .single, .archive, .page-id-7, .page-id-9, .page-id-11, .page-id-38,.page-id-41  {
   footer#colophon {
-    position: relative;
+    position: relative !important;
     bottom: 0;
     display: block;
     overflow: hidden;
   }
 }
+
 
 footer#colophon {
   position: fixed;
@@ -30,7 +31,6 @@ footer#colophon {
     padding-bottom: 0 !important;
     opacity: 0.98;
     background-color: $gray-dark !important;
-    filter: contrast(115%);
     @include border-pos-rad(4px, 4px,0, 0);
     @include box-shadow(0 ,-4px, 10px, -2px,rgba(0, 0, 0, 0.3));
     div{

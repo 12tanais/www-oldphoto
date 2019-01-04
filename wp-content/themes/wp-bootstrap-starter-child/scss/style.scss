@@ -28,6 +28,14 @@ $black: #0a0b0d;
 a {
   text-decoration: none !important;
 }
+/*ios*/
+input[type=text], input[type=submit], textarea {
+  -webkit-appearance: none;
+  @include border-radius(0);
+}
+select{
+  @include border-radius(0);
+}
 
 .breadcrumbs {
   padding: 57px 0 0 0;
@@ -438,7 +446,7 @@ a {
   }
 }
 
-.photos-page, .page-documents, .page-medals, .page-novelty {
+.photos-page, .page-documents, .page-medals, .page-novelties {
   .btn {
     font: 100 .9rem 'IBM Plex Serif', serif !important;
     letter-spacing: .15rem;
@@ -479,17 +487,62 @@ a {
   }
 }
 
-.page-photos, .page-documents, .page-medals, .archive, .page-novelty, .single {
+.page-photos, .page-documents, .page-medals, .archive, .page-novelties, .single {
   .container {
     margin-top: 0;
-    .ajax-search-box {
-      background: darkgray;
-      margin: 0 15px 30px;
-      width: 100%;
-      @include border-radius(4px);
-      .ajax-search {
-        float: right;
-        padding-right: 15px;
+    .search-wrapper {
+      padding: 0 15px;
+      @media (max-width: 768.98px) {
+        .ajax-search-box:first-child {
+          margin: 0;
+        }
+      }
+      .category-search{
+        @media (max-width: 768.98px) {
+          @include flex (flex);
+          @include justify-content(flex-start);
+        }
+      }
+      .ajax-search-box {
+        background: darkgray;
+        margin: 0 0 30px;
+        width: 100%;
+        .ajax-search {
+          float: right;
+          @media (max-width: 992px) {
+            .wpdreams_asl_container {
+              max-width: 224px;
+            }
+          }
+          @media (max-width: 768.98px) {
+            float: none;
+            @include flex (flex);
+            @include justify-content(flex-start);
+            .wpdreams_asl_container {
+              max-width: 243px;
+            }
+          }
+        }
+        .category-search {
+          .postform {
+            padding: 4px 0;
+            margin: 5px 0;
+            font: 100 14px 'IBM Plex Serif', serif;
+          }
+          .select-button-search {
+            font: 100 14px 'IBM Plex Serif', serif;
+            text-transform: uppercase;
+            letter-spacing: 0.070rem;
+            padding: 4px 5px;
+            margin: 5px 0;
+            background-color: #888888;
+            border: 2px solid #888888;
+            color: #fff;
+            &:focus {
+              outline: -webkit-focus-ring-color auto 0;
+            }
+          }
+        }
       }
     }
     .post-box {
@@ -506,10 +559,10 @@ a {
       &:hover {
         @include box-shadow(0, 1px, 3px, 0, rgba(0, 0, 0, 0.055));
       }
-      @media(max-width: 1200px){
+      @media(max-width: 1200px) {
         height: 480px;
       }
-      @media(max-width: 768px){
+      @media(max-width: 768px) {
         height: 462px;
       }
       .fun-line {
@@ -571,11 +624,12 @@ a {
       margin-bottom: 50px;
       div#pagination {
         text-align: center;
+        float: none;
         color: $gray-dark;
         a.page-numbers {
           color: $gray-dark;
         }
-        .current{
+        .current {
           font-weight: 700;
         }
       }
@@ -726,9 +780,9 @@ a {
 
   .post-wrapper {
     margin-bottom: 2rem;
-    @media (max-width: 992px){
-      div:nth-last-child(-n+2)>.post-box{
-          margin-bottom: 0;
+    @media (max-width: 992px) {
+      div:nth-last-child(-n+2) > .post-box {
+        margin-bottom: 0;
       }
     }
     .post-box .fun-line .title-box a h4 {
@@ -759,4 +813,32 @@ a {
   }
 }
 
+.error404 {
+  background: $gray-dark;
+  position: relative;
+  .error-404 {
+    height: 100vh;
+    .ajax-search {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      #ajaxsearchlite1 {
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      h1 {
+        font: 400 5rem 'Pattaya', sans-serif !important;
+        color: #fff;
+        text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.2),
+        1px 1px 1px rgba(255, 255, 255, 0.2),
+        1px 1px 1px rgba(0, 0, 0, 0.7);
+        letter-spacing: 0.10rem;
+        text-align: center;
+      }
+    }
+  }
+}
 
