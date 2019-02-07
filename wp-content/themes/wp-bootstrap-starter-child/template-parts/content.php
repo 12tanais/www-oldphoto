@@ -85,12 +85,12 @@
                     <div class="row post-wrapper">
                         <?php
                         $post_id_my = array(get_the_ID());
-                        if( in_category( 'photos' ) ){
-                            $categoryPost = 'photos';
+                        if( in_category( array('officialdom', 'military', 'civilian')) ){
+                            $categoryPost = 'officialdom, military, civilian';
                         }elseif ( in_category('documents') ) {
                             $categoryPost = 'documents';
-                        }elseif ( in_category('medals') ){
-                            $categoryPost = 'medals';
+                        }elseif ( in_category( array('medals_jp', 'medals_ru')) ){
+                            $categoryPost = 'medals_jp, medals_ru';
                         }
                         $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 

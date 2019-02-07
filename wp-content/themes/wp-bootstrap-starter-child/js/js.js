@@ -1,40 +1,3 @@
-// function dblphoto() {
-//     var z = document.getElementsByClassName('post-lg-block');
-//     var y;
-//     for(y = 0; y < z.length;y++){
-//         z[y].style.display = 'inherit';
-//     }
-//     var v = document.getElementsByClassName('post-sm-block');
-//     var k;
-//     for(k = 0; k < v.length;k++) {
-//         v[k].style.display = 'none';
-//     }
-//     var x = document.getElementsByClassName('view_blocks');
-//     var i;
-//     for (i = 0; i < x.length; i++) {
-//         x[i].classList.remove('col-md-12', 'col-md-4');
-//         x[i].classList.add('col-md-6');
-//     }
-// }
-// function bigphoto() {
-//     var z = document.getElementsByClassName('post-sm-block');
-//     var y;
-//     for(y = 0; y < z.length;y++){
-//         z[y].style.display = 'inherit';
-//     }
-//     var r = document.getElementsByClassName('post-lg-block');
-//     var p;
-//     for(p = 0; p < r.length;p++){
-//         r[p].style.display = 'none';
-//     }
-//     var x = document.getElementsByClassName("view_blocks");
-//     var i;
-//     for (i = 0; i < x.length; i++) {
-//         x[i].classList.remove('col-md-6', 'col-md-4');
-//         x[i].classList.add('col-md-12');
-//     }
-// }
-
 
 var divisor = document.getElementById("divisor"),
     slider = document.getElementById("slider"),
@@ -68,16 +31,20 @@ jQuery(document).ready(function(){
             jQuery('.navbar-nav').css({
                 'max-height': 380, 'overflow': 'inherit'
             });
-            // jQuery('.mouse-movement').css({'top': '91%'});
         }
         else {
             jQuery('.navbar-nav').css({
                 'max-height': 208, 'overflow': 'auto', '-webkit-overflow-scrolling': 'touch'
             });
-            // jQuery('.mouse-movement').css({
-            //     'top': '89%'
-            // });
         }
     });
-});
 
+    $('.manyColumn .post-box').hover(function(){$(this).addClass('hover');},
+        function(){$(this).removeClass('hover');});
+
+    $('i').click(function(){
+        $(this).toggleClass('fa-th  fa-th-list');
+        $('.oneColumn').toggleClass('deliteClass  inerithClass');
+        $('.manyColumn').toggleClass('inerithClass  deliteClass');
+    });
+});

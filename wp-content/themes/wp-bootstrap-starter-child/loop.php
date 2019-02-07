@@ -1,13 +1,23 @@
-<div class="row  post-wrapper">
-    <?php if(in_category('photos')):{
-        $category = 'photos';
-    }elseif(in_category('documents')):{
-        $category = 'documents';
-    }elseif(in_category('medals')):{
-        $category = 'medals';
+<div class="row post-wrapper">
+    <?php if (in_category('officialdom')):{
+        $category = 'officialdom';
+    } elseif (in_category('civilian')):{
+        $category = 'civilian';
     }
-    ?>
-    <?php endif;?>
+    elseif (in_category('military')):{
+        $category = 'military';
+    }
+    elseif (in_category('documents')):{
+        $category = 'documents';
+    }
+    elseif (in_category('medals_jp')):{
+        $category = 'medals_jp';
+    }
+    elseif (in_category('medals_ru')):{
+        $category = 'medals_ru';
+    }
+        ?>
+    <?php endif; ?>
     <?php
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
     $new_query = new WP_Query(array(
@@ -19,41 +29,27 @@
     ?>
 
     <?php while ($new_query->have_posts()) : $new_query->the_post(); ?>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex flex-wrap">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 d-flex flex-wrap">
             <div class="post-box">
                 <div class="fun-box-img">
                     <div class="fun-line">
                         <div class="title-box d-flex align-items-center justify-content-center">
-                            <!--                            <p>Дата публикации: --><?php //echo the_date() ?><!--</p>-->
                             <a href="<?php the_permalink(); ?>">
                                 <h4>
-                                    <?php trim_title_chars(40, '...'); ?>
+                                    <?php trim_title_chars(50, '...'); ?>
                                 </h4>
                             </a>
                         </div>
                         <div class="img-wrapper">
-                            <div class="fun-post-img" style="background-image: url('<?php
-                            $thumb_id = get_post_thumbnail_id();
-                            $thumb_url = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
-                            echo $thumb_url[0];
-                            ?>')">
-                            </div>
+                            <a href="<?php the_permalink(); ?>">
+                                <div class="fun-post-img" style="background-image: url('<?php
+                                $thumb_id = get_post_thumbnail_id();
+                                $thumb_url = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
+                                echo $thumb_url[0];
+                                ?>')">
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                </div>
-                <div class="fun-box-text">
-<!--                    <div class="fun-text">-->
-<!--                        <p>-->
-<!--                            --><?php //$main_content =  the_field('description');
-//                            $tri_content = wp_trim_words($main_content, 7, '...');
-//                            echo $tri_content; ?>
-<!--                        </p>-->
-<!--                    </div>-->
-                    <div class="fun-news-button">
-                        <p class="text-center">
-                            <a class="btn btn-light" href="<?php the_permalink(); ?>"
-                               role="button">Узнать больше</a>
-                        </p>
                     </div>
                 </div>
             </div>

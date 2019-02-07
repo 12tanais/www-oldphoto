@@ -4,10 +4,10 @@
   "description": "atiquje page",
   "main": "index.js",
   "dependencies": {
-    "browser-sync": "^2.24.6",
     "npm": "^6.4.1"
   },
   "devDependencies": {
+    "browser-sync": "^2.26.3",
     "gulp": "^3.9.1",
     "gulp-sass": "^4.0.1"
   },

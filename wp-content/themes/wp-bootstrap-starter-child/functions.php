@@ -51,7 +51,6 @@ function trim_title_chars($count, $after)
 function load(){
     // my js file
     wp_enqueue_script('view_script', get_template_directory_uri().'-child/js/js.js','', '1.0', true);
-    wp_enqueue_script('pagination_js', get_template_directory_uri() . '-child/js/pagination.js', ['jquery']);
 }
 add_action('wp_enqueue_scripts', 'load');
 
@@ -97,9 +96,17 @@ add_action ( 'publish_post', 'updateNumbers' );
 add_action ( 'deleted_post', 'updateNumbers' );
 add_action ( 'edit_post', 'updateNumbers' );
 
+add_action( 'wp_enqueue_scripts', 'crunchify_enqueue_fontawesome' );
+function crunchify_enqueue_fontawesome() {
+    wp_enqueue_style('font-awesome', get_template_directory_uri().'-child/font-awesome/css/font-awesome.min.css');
+}
 
 
-
-
-
+function trim_characters($count, $after = '...'){
+    $excerpt = get_the_content();
+    $excerpt = strip_tags($excerpt);
+    $excerpt = mb_substr($excerpt, 0, $count);
+    $excerpt = $excerpt . $after;
+    return $excerpt;
+}
 
